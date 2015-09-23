@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="hotels.xsl"?>
+
+<d:hotels
+	xmlns:d="http://www.uts.edu.au/31284/team2/wsd-hotels"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.uts.edu.au/31284/team2/wsd-hotels hotels.xsd ">
+	
+  <d:hotel id="1">
+    <d:name>Test Hotel</d:name>
+    <d:country>Australia</d:country>
+  </d:hotel>
+  
+  <d:hotel id="2">
+    <d:name>Best Inn</d:name>
+    <d:country>USA</d:country>
+  </d:hotel>
+  
+  <d:hotel id="3">
+    <d:name>Better Inn</d:name>
+    <d:country>Canada</d:country>
+  </d:hotel>
+  
+</d:hotels>
