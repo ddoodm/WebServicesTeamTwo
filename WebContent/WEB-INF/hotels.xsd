@@ -15,11 +15,33 @@
  
  <xs:complexType name="hotelType">
  	<xs:sequence>
- 		<xs:element name="name" type="xs:string" />
- 		<xs:element name="country" type="xs:string" />
+ 		<xs:element name="name" type="nameType" />
+ 		<xs:element name="country" type="nameType" />
+ 		<xs:element name="rating" type="ratingType" />
+ 		<xs:element name="image-url" type="imageUrlType" />
+ 		<xs:element name="description" type="xs:string" />
  	</xs:sequence>
  	
  	<xs:attribute name="id" type="xs:unsignedInt" use="required"/>
  </xs:complexType>
+ 
+ <xs:simpleType name="ratingType">
+ 	<xs:restriction base="xs:unsignedShort">
+    	<xs:minInclusive value="1"/>
+    	<xs:maxInclusive value="10"/>
+  	</xs:restriction>
+ </xs:simpleType>
+ 
+  <xs:simpleType name="nameType">
+ 	<xs:restriction base="xs:string">
+    	<xs:pattern value="([A-Z]'?[-aA-zZ]+\s?)+"/>
+  	</xs:restriction>
+ </xs:simpleType>
+ 
+ <xs:simpleType name="imageUrlType">
+ 	<xs:restriction base="xs:string">
+    	<xs:pattern value="([\-_a-zA-Z0-9]+)(/[\-_a-zA-Z0-9]+)*.(jpg|png|gif|tif|bmp|tga)"/>
+  	</xs:restriction>
+ </xs:simpleType>
  
 </xs:schema>
