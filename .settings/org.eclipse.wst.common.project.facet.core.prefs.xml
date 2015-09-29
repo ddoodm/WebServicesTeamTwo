@@ -1,0 +1,7 @@
+<root>
+  <facet id="jpt.jaxb">
+    <node name="classgen">
+      <attribute name="package" value="uts.wsd.teamtwo.JAXB"/>
+    </node>
+  </facet>
+</root>

@@ -11,13 +11,22 @@
  			<xs:element name="hotel" type="hotelType" />
  		</xs:sequence>
  	</xs:complexType>
+ 	
+	<xs:unique name="UniqueID">
+		<xs:selector xpath="Add" /> 
+		<xs:field xpath="@id" /> 
+	</xs:unique>
  </xs:element>
  
  <xs:complexType name="hotelType">
  	<xs:sequence>
  		<xs:element name="name" type="nameType" />
  		<xs:element name="country" type="nameType" />
- 		<xs:element name="rating" type="ratingType" />
+ 		<xs:element name="state" type="nameType" />
+ 		<xs:element name="city" type="nameType" />
+ 		<xs:element name="address" type="addressType" />
+ 		<xs:element name="telephone" type="telephoneType" />
+ 		<xs:element name="email" type="emailType" />
  		<xs:element name="image-url" type="imageUrlType" />
  		<xs:element name="description" type="xs:string" />
  	</xs:sequence>
@@ -32,9 +41,27 @@
   	</xs:restriction>
  </xs:simpleType>
  
+  <xs:simpleType name="telephoneType">
+ 	<xs:restriction base="xs:string">
+    	<xs:pattern value="(\+\d{2}\s)?\(\d{2}\)\s\d{4}\s\d{4}"/>
+  	</xs:restriction>
+ </xs:simpleType>
+ 
+  <xs:simpleType name="emailType">
+ 	<xs:restriction base="xs:string">
+    	<xs:pattern value="[_a-zA-Z0-9\-]+@[_a-zA-Z0-9\-]+(\.[a-z]+)+"/>
+  	</xs:restriction>
+ </xs:simpleType>
+ 
   <xs:simpleType name="nameType">
  	<xs:restriction base="xs:string">
     	<xs:pattern value="([A-Z]'?[-aA-zZ]+\s?)+"/>
+  	</xs:restriction>
+ </xs:simpleType>
+
+  <xs:simpleType name="addressType">
+ 	<xs:restriction base="xs:string">
+    	<xs:pattern value="\d+(\-\d+)?\s\w+(\s\w+)?\s(St.|Rd.|Ave.|Pl.|Ln.|Parade|Chome)"/>
   	</xs:restriction>
  </xs:simpleType>
  

@@ -8,25 +8,37 @@
   <d:hotel id="1">
     <d:name>Placeholder Hotel</d:name>
     <d:country>Australia</d:country>
-    <d:rating>8</d:rating>
+    <d:state>New South Wales</d:state>
+    <d:city>Sydney</d:city>
+    <d:address>24-42 Fiction Ln.</d:address>
+    <d:telephone>+61 (02) 9909 2441</d:telephone>
+    <d:email>contact@placehotel.com.au</d:email>
     <d:image-url>placeholderHotel.jpg</d:image-url>
     <d:description>Placeholder description, lorem ipsum dolar sit amen whatever.</d:description>
   </d:hotel>
   
   <d:hotel id="2">
-    <d:name>Best Inn</d:name>
+    <d:name>Brilliant Inn</d:name>
     <d:country>USA</d:country>
-    <d:rating>4</d:rating>
-    <d:image-url>bestInn.jpg</d:image-url>
-    <d:description>The Best Inn in the U.S.A.</d:description>
+    <d:state>New York</d:state>
+    <d:city>New York City</d:city>
+    <d:address>28 3rd Ave.</d:address>
+    <d:telephone>+01 (01) 5823 4253</d:telephone>
+    <d:email>contact@brillinn.com</d:email>
+    <d:image-url>brillinn.jpg</d:image-url>
+    <d:description>An incredible inn in NYC.</d:description>
   </d:hotel>
   
   <d:hotel id="3">
-    <d:name>Better Inn</d:name>
-    <d:country>Canada</d:country>
-    <d:rating>9</d:rating>
-    <d:image-url>betterInn.jpg</d:image-url>
-    <d:description>Something something. Writing a placeholder so that I can continue coding.</d:description>
+    <d:name>Cozy Capsule Hotel</d:name>
+    <d:country>Japan</d:country>
+    <d:state>Tokyo Prefecture</d:state>
+    <d:city>Tokyo</d:city>
+    <d:address>5-3 Yaesu 1 Chome</d:address>
+    <d:telephone>+41 (21) 5336 8766</d:telephone>
+    <d:email>contact@capsule.co.jp</d:email>
+    <d:image-url>cozyCapsule.jpg</d:image-url>
+    <d:description>An awesome capsule hotel in the heart of Tokyo.</d:description>
   </d:hotel>
   
 </d:hotels>
