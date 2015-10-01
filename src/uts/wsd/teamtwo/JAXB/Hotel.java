@@ -56,7 +56,7 @@ import javax.xml.bind.annotation.XmlType;
     "imageUrl",
     "description"
 })
-public class HotelType {
+public class Hotel {
 
     @XmlElement(required = true)
     protected String name;
