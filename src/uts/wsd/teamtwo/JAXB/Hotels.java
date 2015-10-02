@@ -21,8 +21,35 @@ public class Hotels implements Serializable {
 
 	@XmlElement(name="hotel")
     private ArrayList<Hotel> list = new ArrayList<Hotel>();
+	
+	public Hotels () { }
+	
+	public Hotels (ArrayList<Hotel> list)
+	{
+		this.list = list;
+	}
+	
+	public Hotels filterByName(String name)
+	{
+		ArrayList<Hotel> filteredList = new ArrayList<Hotel>();
+		for(Hotel hotel : list)
+			if(hotel.getName().toLowerCase().contains(name.toLowerCase()))
+				filteredList.add(hotel);
+		
+		return new Hotels(filteredList);
+	}
+	
+	public Hotels filterByCountry(String country)
+	{
+		ArrayList<Hotel> filteredList = new ArrayList<Hotel>();
+		for(Hotel hotel : list)
+			if(hotel.getCountry().toLowerCase().equals(country.toLowerCase()))
+				filteredList.add(hotel);
+		
+		return new Hotels(filteredList);
+	}
 
-    public ArrayList<Hotel> getHotels()
+    public ArrayList<Hotel> getList()
     {
         return this.list;
     }

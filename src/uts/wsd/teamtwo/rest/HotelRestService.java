@@ -4,6 +4,8 @@ import uts.wsd.teamtwo.*;
 import uts.wsd.teamtwo.JAXB.*;
 
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.util.ArrayList;
 
 import javax.servlet.ServletContext;
 import javax.ws.rs.*;
@@ -12,7 +14,7 @@ import javax.xml.bind.JAXBException;
 
 import org.xml.sax.SAXException;
 
-@Path("/hotelService")
+@Path("")
 public class HotelRestService
 {
 	@Context
@@ -63,5 +65,44 @@ public class HotelRestService
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	/**
+	 * Generates a set of hotels, filtered by all (may be null) of the parameters.
+	 * @param name The partial name of the matching hotel (match will <b>contain</b> 'name' in its name.
+	 * @param country The country of the matching hotel.
+	 * @return The set of hotels that has been filtered by the parameters.
+	 */
+	@Path("/search")
+	@GET
+	@Produces(MediaType.APPLICATION_XML)
+	public Hotels searchHotels(
+			@QueryParam("name") String name,
+			@QueryParam("country") String country)
+	{
+		Hotels unfilteredHotels;
+		
+		// Get unfiltered set of hotels from the hotel application
+		try
+		{
+			unfilteredHotels = getHotelApp().getHotels();
+		}
+		catch (JAXBException | IOException | SAXException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		
+		// (Working hotel set)
+		Hotels filteredHotels = unfilteredHotels;
+		
+		// Filter by the parameter(s) supplied
+		if(name != null && !name.isEmpty())
+			filteredHotels = filteredHotels.filterByName(name);
+		if(country != null && !country.isEmpty())
+			filteredHotels = filteredHotels.filterByCountry(country);
+		
+		return filteredHotels;
 	}
 }

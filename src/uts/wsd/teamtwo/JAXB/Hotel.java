@@ -14,35 +14,10 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
-
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
- * <p>Java class for hotelType complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
- * 
- * <pre>
- * &lt;complexType name="hotelType">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="name" type="{http://www.uts.edu.au/31284/team2/wsd-hotels}nameType"/>
- *         &lt;element name="country" type="{http://www.uts.edu.au/31284/team2/wsd-hotels}nameType"/>
- *         &lt;element name="state" type="{http://www.uts.edu.au/31284/team2/wsd-hotels}nameType"/>
- *         &lt;element name="city" type="{http://www.uts.edu.au/31284/team2/wsd-hotels}nameType"/>
- *         &lt;element name="address" type="{http://www.uts.edu.au/31284/team2/wsd-hotels}addressType"/>
- *         &lt;element name="telephone" type="{http://www.uts.edu.au/31284/team2/wsd-hotels}telephoneType"/>
- *         &lt;element name="email" type="{http://www.uts.edu.au/31284/team2/wsd-hotels}emailType"/>
- *         &lt;element name="image-url" type="{http://www.uts.edu.au/31284/team2/wsd-hotels}imageUrlType"/>
- *         &lt;element name="description" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *       &lt;/sequence>
- *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}unsignedInt" />
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
- * </pre>
- * 
- * 
+ * <p>Java class for hotelType complex type.</p>
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "hotelType", propOrder = {
@@ -56,8 +31,8 @@ import javax.xml.bind.annotation.XmlType;
     "imageUrl",
     "description"
 })
-public class Hotel {
-
+public class Hotel
+{
     @XmlElement(required = true)
     protected String name;
     @XmlElement(required = true)
@@ -76,9 +51,12 @@ public class Hotel {
     protected String imageUrl;
     @XmlElement(required = true)
     protected String description;
+    
+    // ID attribute uses custom adapter to auto-increment
     @XmlAttribute(name = "id", required = true)
     @XmlSchemaType(name = "unsignedInt")
-    protected long id;
+    @XmlJavaTypeAdapter(IDAutoIncrementAdapter.class)
+    protected Integer id;
 
     /**
      * Gets the value of the name property.
@@ -303,13 +281,4 @@ public class Hotel {
     public long getId() {
         return id;
     }
-
-    /**
-     * Sets the value of the id property.
-     * 
-     */
-    public void setId(long value) {
-        this.id = value;
-    }
-
 }
