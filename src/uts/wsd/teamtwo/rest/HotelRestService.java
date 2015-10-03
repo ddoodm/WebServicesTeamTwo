@@ -80,12 +80,13 @@ public class HotelRestService
 			@QueryParam("name") String name,
 			@QueryParam("country") String country)
 	{
-		Hotels unfilteredHotels;
+		// (Working hotel set)
+		Hotels filteredHotels;
 		
 		// Get unfiltered set of hotels from the hotel application
 		try
 		{
-			unfilteredHotels = getHotelApp().getHotels();
+			filteredHotels = getHotelApp().getHotels();
 		}
 		catch (JAXBException | IOException | SAXException e)
 		{
@@ -93,9 +94,6 @@ public class HotelRestService
 			e.printStackTrace();
 			return null;
 		}
-		
-		// (Working hotel set)
-		Hotels filteredHotels = unfilteredHotels;
 		
 		// Filter by the parameter(s) supplied
 		if(name != null && !name.isEmpty())

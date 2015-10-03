@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.uts.edu.au/31284/team2/wsd-reviews"
+	xmlns="http://www.uts.edu.au/31284/team2/wsd-reviews"
+	elementFormDefault="qualified">
+	
+	<xsd:element name="reviews">
+		<xsd:complexType>
+	 		<xsd:sequence minOccurs="1" maxOccurs="unbounded">
+	 			<xsd:element name="review" type="review" />
+	 		</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:complexType name="review">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="id" type="xsd:unsignedInt" use="required" />
+				<xsd:attribute name="hotel" type="xsd:unsignedInt" use="required" />
+				<xsd:attribute name="title" type="titleType" use="required" />
+				<xsd:attribute name="rating" type="ratingType" use="required" />
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+ 
+	<xsd:simpleType name="titleType">
+		<xsd:restriction base="xsd:string">
+    		<xsd:pattern value="([A-Z]\w*\s?)+" />
+ 		</xsd:restriction>
+	</xsd:simpleType>
+ 
+	<xsd:simpleType name="ratingType">
+		<xsd:restriction base="xsd:unsignedShort">
+			<xsd:minInclusive value="1" />
+			<xsd:maxInclusive value="10" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+</xsd:schema>

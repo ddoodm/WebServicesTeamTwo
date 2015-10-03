@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <xsd:schema
  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
  targetNamespace="http://www.uts.edu.au/31284/team2/wsd-hotels"
@@ -6,21 +7,19 @@
  elementFormDefault="qualified">
  
  <xsd:element name="hotels">
- 	
- 	
-        <xsd:complexType>
+
+    <xsd:complexType>
  		<xsd:sequence minOccurs="1" maxOccurs="unbounded">
  			<xsd:element name="hotel" type="hotelType" />
  		</xsd:sequence>
  	</xsd:complexType>
         
-        <xsd:unique name="UniqueID">
-		 
-            <xsd:selector xpath="Add" />
-             
-            <xsd:field xpath="@id" />
-        </xsd:unique>
-    </xsd:element>
+    <xsd:unique name="UniqueID">
+        <xsd:selector xpath="Add" />
+        <xsd:field xpath="@id" />
+    </xsd:unique>
+    
+</xsd:element>
  
  <xsd:complexType name="hotelType">
  	<xsd:sequence>
@@ -37,13 +36,6 @@
  	
  	<xsd:attribute name="id" type="xsd:unsignedInt" use="required" />
  </xsd:complexType>
- 
- <xsd:simpleType name="ratingType">
- 	<xsd:restriction base="xsd:unsignedShort">
-    	<xsd:minInclusive value="1" />
-    	<xsd:maxInclusive value="10" />
-  	</xsd:restriction>
- </xsd:simpleType>
  
   <xsd:simpleType name="telephoneType">
  	<xsd:restriction base="xsd:string">
