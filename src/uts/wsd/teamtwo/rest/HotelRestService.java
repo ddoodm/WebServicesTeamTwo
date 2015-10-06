@@ -49,11 +49,8 @@ public class HotelRestService
 			return hotelApp;
 		}
 	}
-
-	@Path("/hotels")
-	@GET
-	@Produces(MediaType.APPLICATION_XML)
-	public Hotels getHotels()
+	
+	private Hotels getHotels()
 	{
 		try
 		{
@@ -73,33 +70,29 @@ public class HotelRestService
 	 * @param country The country of the matching hotel.
 	 * @return The set of hotels that has been filtered by the parameters.
 	 */
-	@Path("/search")
+	@Path("/hotels")
 	@GET
 	@Produces(MediaType.APPLICATION_XML)
 	public Hotels searchHotels(
 			@QueryParam("name") String name,
-			@QueryParam("country") String country)
+			@QueryParam("country") String country,
+			@QueryParam("city") String city)
 	{
 		// (Working hotel set)
-		Hotels filteredHotels;
-		
-		// Get unfiltered set of hotels from the hotel application
-		try
-		{
-			filteredHotels = getHotelApp().getHotels();
-		}
-		catch (JAXBException | IOException | SAXException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
+		Hotels filteredHotels = getHotels();
 		
 		// Filter by the parameter(s) supplied
 		if(name != null && !name.isEmpty())
 			filteredHotels = filteredHotels.filterByName(name);
+		
 		if(country != null && !country.isEmpty())
+		{
 			filteredHotels = filteredHotels.filterByCountry(country);
+			
+			// Filter by city only if country has been supplied
+			if(city != null && !city.isEmpty())
+				filteredHotels = filteredHotels.filterByCity(city);
+		}
 		
 		return filteredHotels;
 	}

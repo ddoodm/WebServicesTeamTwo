@@ -48,6 +48,16 @@ public class Hotels implements Serializable {
 		
 		return new Hotels(filteredList);
 	}
+	
+	public Hotels filterByCity(String city)
+	{
+		ArrayList<Hotel> filteredList = new ArrayList<Hotel>();
+		for(Hotel hotel : list)
+			if(hotel.getCity().toLowerCase().equals(city.toLowerCase()))
+				filteredList.add(hotel);
+		
+		return new Hotels(filteredList);
+	}
 
     public ArrayList<Hotel> getList()
     {

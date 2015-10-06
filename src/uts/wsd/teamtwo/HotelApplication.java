@@ -17,7 +17,7 @@ import uts.wsd.teamtwo.JAXB.*;
 
 public class HotelApplication
 {
-	private String documentPath;
+	private String documentPath, schemaPath;
 	private Hotels hotels;
 	
 	private JAXBContext jc;
@@ -39,13 +39,20 @@ public class HotelApplication
 		m.marshal(hotels, fout);
 	}
 	
-	public String getFilePath() {
+	public String getDocumentPath()
+	{
 		return documentPath;
+	}
+	
+	public String getSchemaPath()
+	{
+		return schemaPath;
 	}
 
 	public void setFilePaths(String documentPath, String schemaPath) throws JAXBException, IOException, SAXException
 	{
 		this.documentPath = documentPath;
+		this.schemaPath = schemaPath;
 		
 		// Create the unmarshaller
 		jc = JAXBContext.newInstance(Hotels.class);
@@ -62,11 +69,8 @@ public class HotelApplication
 		documentFin.close();
 	}
 
-	public Hotels getHotels() {
+	public Hotels getHotels()
+	{
 		return hotels;
-	}
-
-	public void setUsers(Hotels hotels) {
-		this.hotels = hotels;
 	}
 }
