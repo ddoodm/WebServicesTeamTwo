@@ -1,12 +1,18 @@
 @CHARSET "ISO-8859-1";
 
-/* Transition the entire document */
 *
 {
+	/* Transition the entire document */
 	-webkit-transition: all 0.1s;
 	-moz-transition: all 0.1s;
 	-o-transition: all 0.1s;
 	transition: all 0.1s;
+	
+	/* Use "inner-padding" boxing style */
+	box-sizing: border-box;
+	ms-box-sizing: border-box;
+	webkit-box-sizing: border-box;
+	moz-box-sizing: border-box;
 }
 
 html {margin: 0;}
@@ -42,17 +48,21 @@ h1
 	position:fixed;
 	width:100vw;
 	background-image: url("HotelsBanner.png");
-	border-bottom: 2px solid #99A;
+	border-bottom: 15px solid #353535;
+	
+	-webkit-box-shadow: 0px 0px 22px 0px rgba(0,0,0,0.55);
+	-moz-box-shadow: 0px 0px 22px 0px rgba(0,0,0,0.55);
+	box-shadow: 0px 0px 22px 0px rgba(0,0,0,0.55);
 }
 
 /* The container for the main document body */
 #wrapper
 {
-	width:700px;
+	width:800px;
 	min-height:100vh;
 	background-color: #FFF;
 	
-	padding: 110px 50px 0 50px;
+	padding: 110px 25px 0 25px;
 	margin: 0 auto 0 auto;
 	
 	border: 4px solid #DDD;
@@ -79,12 +89,6 @@ h1
 /* A hotel list item div */
 .hotelListItem
 {
-	/* Use "inner-padding" boxing style */
-	box-sizing: border-box;
-	ms-box-sizing: border-box;
-	webkit-box-sizing: border-box;
-	moz-box-sizing: border-box;
-	
 	display: block;
 	margin: 15px auto 15px auto;
 	padding: 15px;
