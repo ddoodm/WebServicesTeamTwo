@@ -1,0 +1,109 @@
+@CHARSET "ISO-8859-1";
+
+/* Transition the entire document */
+*
+{
+	-webkit-transition: all 0.1s;
+	-moz-transition: all 0.1s;
+	-o-transition: all 0.1s;
+	transition: all 0.1s;
+}
+
+html {margin: 0;}
+
+body {margin: 0; font-family: Arial, sans-serif; background-color:#EEE;}
+
+a
+{
+	font-weight:bold;
+	text-decoration:none;
+	color:#555;
+}
+
+a:hover
+{
+	font-weight:bold;
+	text-decoration:underline;
+	color:#555;
+}
+
+h1
+{
+	font-size: 18px;
+	padding: 0;
+	margin: 0;
+	color:#103c55;
+	border-top:2px solid #99A;
+}
+
+/* The floating title bar (banner) */
+#head
+{
+	position:fixed;
+	width:100vw;
+	background-image: url("HotelsBanner.png");
+	border-bottom: 2px solid #99A;
+}
+
+/* The container for the main document body */
+#wrapper
+{
+	width:700px;
+	min-height:100vh;
+	background-color: #FFF;
+	
+	padding: 110px 50px 0 50px;
+	margin: 0 auto 0 auto;
+	
+	border: 4px solid #DDD;
+}
+
+#wrapper > p
+{
+	padding: 0 50px 0 50px;
+	text-align:justify;
+}
+
+#wrapper > hr
+{
+	border: 1px solid #C4C4C4;
+	margin-top: 50px;
+}
+
+/* The hotel list div */
+#hotelListing
+{
+	width:100%;
+}
+
+/* A hotel list item div */
+.hotelListItem
+{
+	/* Use "inner-padding" boxing style */
+	box-sizing: border-box;
+	ms-box-sizing: border-box;
+	webkit-box-sizing: border-box;
+	moz-box-sizing: border-box;
+	
+	display: block;
+	margin: 15px auto 15px auto;
+	padding: 15px;
+	width: 100%;
+	height: 120px;
+	border: 1px solid #99A;
+	background-color: white;
+}
+
+/* Item hightlight */
+.hotelListItem:hover
+{
+	background-color: #F8F8F8;
+}
+
+/* Legal and credit information */
+#trailer
+{
+	margin: 0 auto 0 auto;
+	text-align:center;
+	font-size:12px;
+}
