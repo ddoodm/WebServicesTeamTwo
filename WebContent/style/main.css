@@ -17,7 +17,7 @@
 
 html {margin: 0;}
 
-body {margin: 0; font-family: Arial, sans-serif; background-color:#EEE;}
+body {margin: 0; font-family: Arial, sans-serif; background-color:#EEE; font-size:14px;}
 
 a
 {
@@ -33,13 +33,20 @@ a:hover
 	color:#555;
 }
 
-h1
+h1, h2
 {
 	font-size: 18px;
 	padding: 0;
 	margin: 0;
 	color:#103c55;
 	border-top:2px solid #99A;
+}
+
+h2
+{
+	font-size:15px;
+	border: none;
+	border-bottom: 1px solid #AAB;
 }
 
 /* The floating title bar (banner) */
@@ -91,9 +98,9 @@ h1
 {
 	display: block;
 	margin: 15px auto 15px auto;
-	padding: 15px;
+	padding: 10px;
 	width: 100%;
-	height: 120px;
+	height: 210px;
 	border: 1px solid #99A;
 	background-color: white;
 }
@@ -102,6 +109,19 @@ h1
 .hotelListItem:hover
 {
 	background-color: #F8F8F8;
+}
+
+.hotelListItem > p, h2
+{
+	margin: 0 auto 8px 200px;
+	padding: 0;
+}
+
+.hotelListIcon
+{
+	height:100%;
+	width:auto;
+	float:left;
 }
 
 /* Legal and credit information */

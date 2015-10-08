@@ -22,15 +22,27 @@
 		Our certified reviewers take vacation seriously.
 		Start your search for the hotel of your dreams... now!</p>
 		
-		<p>We provide a REST and SOAP services so that your own applications may access
-		our vast database of hotel listings and our comprehensive reviews.</p>
+		<p>We provide REST and SOAP services so that your own applications may access
+		our vast database of hotel listings and comprehensive reviews.</p>
 		
 		<br />
 		
 		<h1>HOTEL LISTING</h1>
 		<div id="hotelListing">
-			<span class="hotelListItem">Grand</span>
-			<span class="hotelListItem">Mariot</span>
+			<div class="hotelListItem">
+				<img class="hotelListIcon" src="images/hotels/TheShiodome.jpg"/>
+				<h2>The Shiodome</h2>
+				<p>Tokyo, Japan</p>
+				<p>Average Rating: 8 / 10</p>
+				<p>This is a sample review. The hotel is pretty alright.</p>
+			</div>
+			<div class="hotelListItem">
+				<img class="hotelListIcon" src="images/hotels/ShinjukuKabukichoTower.jpg"/>
+				<h2>Shinjuku Kabukicho Tower</h2>
+				<p>Tokyo, Japan</p>
+				<p>Average Rating: 7 / 10</p>
+				<p>Another sample review. The hotel is nice, but not quite as good as others in the local area. I don't actually know what this hotel is like, I'm just going off the picture.</p>
+			</div>
 		</div>
 		
 	</div>
