@@ -9,11 +9,11 @@ public class Author implements Serializable{
 	
     @XmlAttribute(name = "id")
     private int id;
-	@XmlElement(name = "name")
+    @XmlElement(required = true)
 	private String name;
-	@XmlElement(name = "email")
+    @XmlElement(required = true)
 	private String email;
-	@XmlElement(name = "password")
+    @XmlElement(required = true)
 	private String password;
 
 	public Author() {

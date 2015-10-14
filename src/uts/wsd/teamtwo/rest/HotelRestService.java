@@ -20,10 +20,6 @@ public class HotelRestService
 	@Context
 	ServletContext application;
 	
-	private static final String
-		HOTELS_DOCUMENT_PATH = "WEB-INF/hotels.xml",
-		HOTELS_SCHEMA_PATH = "WEB-INF/hotels.xsd";
-	
 	private HotelApplication getHotelApp() throws JAXBException, IOException, SAXException
 	{
 		/* 
@@ -38,9 +34,9 @@ public class HotelRestService
 			{
 				hotelApp = new HotelApplication();
 				
-				hotelApp.setFilePaths(
-						application.getRealPath(HOTELS_DOCUMENT_PATH),
-						application.getRealPath(HOTELS_SCHEMA_PATH));
+				hotelApp.setFilePath(
+						application.getRealPath(HotelApplication.HOTELS_DOCUMENT_PATH)/*,
+						application.getRealPath(HOTELS_SCHEMA_PATH)*/);
 				
 				application.setAttribute("hotelApp", hotelApp);
 				System.out.println("==== HotelRestService.getHotelApp(): Instantiated a new HotelApp.");
