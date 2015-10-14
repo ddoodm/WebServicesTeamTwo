@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<authors>
+	<author id="0">
+		<email>ryan@ryanheise.com</email>
+		<name>Ryan Heise</name>
+		<password>blahblah</password>
+	</author>
+	<author id="1">
+		<email>joe@bloggs.com</email>
+		<name>Joe Bloggs</name>
+		<password>foobar</password>
+	</author>
+	<author id="2">
+		<email>abe@gmail.com</email>
+		<name>Abraham</name>
+		<password>password</password>
+	</author>
+</authors>
