@@ -1,5 +1,6 @@
 <%@page import="uts.wsd.teamtwo.HotelApplication"%>
 <%@ page import="uts.wsd.teamtwo.JAXB.*" %>
+<%@page import="uts.wsd.teamtwo.*"%>
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml" %>
@@ -23,11 +24,12 @@
 
 	<div id="head">
 	<div>
-			<jsp:useBean id="author" class="uts.wsd.teamtwo.Author"
-				scope="session" />
+			<%
+				Author author = (Author)session.getAttribute("author");
+			%>
 
 			<%
-				if (author.getName() == null) {
+				if (author == null) {
 			%>
 
 			<div
@@ -43,9 +45,7 @@
 
 			<div
 				style="background: #eee; border: solid 1px #333; text-align: right; width: 100%;">
-				You are logged in as
-				<jsp:getProperty property="name" name="author" />
-				&lt;<jsp:getProperty property="email" name="author" />&gt;
+				You are logged in as <%=author.getName() %>&lt;<%=author.getEmail() %>
 			</div>
 			<div style="text-align: right;">
 				<a href="logout.jsp">Logout</a>

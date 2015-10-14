@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.StringWriter;
 
+import javax.servlet.ServletContext;
 import javax.xml.XMLConstants;
 import javax.xml.bind.*;
 import javax.xml.validation.Schema;
@@ -23,11 +24,12 @@ public class HotelApplication
 	HOTELS_SCHEMA_PATH = "WEB-INF/hotels.xsd",
 	AUTHORS_DOCUMENT_PATH = "WEB-INF/authors.xml";
 
-	private String documentPath/*, schemaPath*/;
+	private String documentPath/*, schemaPath*/,filePath;
 	private Hotels hotels;
 	private Authors authors;
 
 	private JAXBContext jc;
+	private JAXBContext jc2;
 
 	public HotelApplication()
 	{
@@ -57,6 +59,18 @@ public class HotelApplication
 		return schemaPath;
 	}
 	 */
+	/*public void setAuthorFilePath(String filePath) throws JAXBException, IOException {
+		this.filePath = filePath;
+		// This is the file path given to us.
+		// We should use it
+
+		// Load the users from the XML file...
+		JAXBContext jc = JAXBContext.newInstance(Authors.class);
+		Unmarshaller u = jc.createUnmarshaller();
+		FileInputStream fin = new FileInputStream(filePath); // use the given file path
+		authors = (Authors)u.unmarshal(fin); // This loads the "users" object
+		fin.close();
+	}*/
 
 	public void setFilePath(String documentPath/*, String schemaPath*/) throws JAXBException, IOException, SAXException
 	{
@@ -65,19 +79,27 @@ public class HotelApplication
 		/*this.schemaPath = schemaPath;*/
 
 		// Create the unmarshaller
-		jc = JAXBContext.newInstance(Hotels.class);
-		Unmarshaller u = jc.createUnmarshaller();
+		if (documentPath.contains("hotels")){
+			jc = JAXBContext.newInstance(Hotels.class);
+			Unmarshaller u = jc.createUnmarshaller();
 
-		// Provide the "Hotels" schema to the unmarshaller
-		/*
+			// Provide the "Hotels" schema to the unmarshaller
+			/*
         SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI); 
         Schema schema = sf.newSchema(new File(schemaPath)); 
         u.setSchema(schema);
-		 */
-		// Now unmarshal the object from the file
-		FileInputStream documentFin = new FileInputStream(documentPath);
-		hotels = (Hotels)u.unmarshal(documentFin);
-		documentFin.close();
+			 */
+			// Now unmarshal the object from the file
+			FileInputStream documentFin = new FileInputStream(documentPath);
+			hotels = (Hotels)u.unmarshal(documentFin);
+			documentFin.close();
+		} else if (documentPath.contains("authors")){
+			jc2 = JAXBContext.newInstance(Authors.class);
+			Unmarshaller u = jc2.createUnmarshaller();
+			FileInputStream fin = new FileInputStream(documentPath); // use the given file path
+			authors = (Authors)u.unmarshal(fin); // This loads the "users" object
+			fin.close();
+		}
 	}
 
 	public Hotels getHotels()
@@ -85,15 +107,10 @@ public class HotelApplication
 		return hotels;
 	}
 
-	public Authors getAuthors() throws JAXBException, IOException
+	public Authors getAuthors()
 	{
-		jc = JAXBContext.newInstance(Authors.class);
-		Unmarshaller u = jc.createUnmarshaller();
-		FileInputStream documentFin = new FileInputStream(AUTHORS_DOCUMENT_PATH);
-		authors =  (Authors) u.unmarshal(documentFin);
 		return authors;
 	}
-
 	/**
 	 * Produces (marshalls) XML from the HotelApplication's existing set of hotels.
 	 * @return The list of hotels, formatted as XML.
