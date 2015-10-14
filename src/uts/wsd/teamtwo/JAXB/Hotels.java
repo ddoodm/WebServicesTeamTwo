@@ -58,6 +58,14 @@ public class Hotels implements Serializable {
 		
 		return new Hotels(filteredList);
 	}
+	
+	public Hotel getHotel(int hotelId)
+	{
+		for(Hotel hotel : list)
+			if(hotel.getId() == hotelId)
+				return hotel;
+		return null;
+	}
 
     public ArrayList<Hotel> getList()
     {

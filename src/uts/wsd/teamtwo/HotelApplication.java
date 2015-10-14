@@ -37,6 +37,11 @@ public class HotelApplication
 		return hotels;
 	}
 	
+	public Hotel getHotel(int hotelId)
+	{
+		return hotels.getHotel(hotelId);
+	}
+	
 	/**
 	 * Marshal the current database to formatted XML,
 	 * and save (update) the database file.

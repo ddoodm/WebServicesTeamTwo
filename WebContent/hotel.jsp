@@ -12,6 +12,11 @@
     <jsp:setProperty name="hotelApp" property="filePath" value="<%=filePath%>"/>
 </jsp:useBean>
 
+<%
+	int hotelId = Integer.parseInt(request.getParameter("id"));
+	Hotel hotel = hotelApp.getHotel(hotelId);
+%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -26,28 +31,10 @@
 	</div>
 
 	<div id="wrapper">
-		<p id="crumbs">Home</p>
-	
-		<h1>WELCOME TO <i>HOTEL SERVICE 33</i></h1>
-		<p>Hotel Service 33 is a centralized database of tens of hotels
-			across the globe. Our certified reviewers take vacation seriously.
-			Start your search for the hotel of your dreams... now!</p>
-
-		<p>We provide REST and SOAP services so that your own applications
-			may access our vast database of hotel listings and comprehensive
-			reviews.</p>
-
-		<br />
-
-		<c:set var="xmltext">
-			<%= 
-				// Marshal the hotel list into XML
-				hotelApp.produceXML()
-			%>
-		</c:set>
-
-		<c:import url="hotelList.xsl" var="xslt" />
-		<x:transform xml="${xmltext}" xslt="${xslt}" />
+		<p id="crumbs"><a href="index.jsp">Home</a> > Hotel</p>
+		<h1><%= hotel.getName() %></h1>
+		<img id="bigHotelImage" src="images/hotels/TheShiodome.jpg" />
+		<p><%= hotel.getDescription() %></p>
 	</div>
 
 	<div id="trailer">
