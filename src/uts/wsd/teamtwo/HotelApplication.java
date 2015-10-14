@@ -22,7 +22,7 @@ public class HotelApplication
 		HOTELS_DOCUMENT_PATH = "WEB-INF/hotels.xml",
 		HOTELS_SCHEMA_PATH = "WEB-INF/hotels.xsd";
 	
-	private String documentPath/*, schemaPath*/;
+	private String documentPath;
 	private Hotels hotels;
 	
 	private JAXBContext jc;
@@ -32,34 +32,34 @@ public class HotelApplication
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void updateDatabase() throws Exception
+	public Hotels getHotels()
 	{
-		if(jc == null)
-			throw new Exception("The JAXBContext has not been initialized (no database path set)");
-		
-		Marshaller m = jc.createMarshaller();
-		
-		FileOutputStream fout = new FileOutputStream(documentPath);
-		m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-		m.marshal(hotels, fout);
+		return hotels;
 	}
 	
-	public String getDocumentPath()
+	/**
+	 * Marshal the current database to formatted XML,
+	 * and save (update) the database file.
+	 */
+	public void updateDatabase() throws Exception
+	{
+		// Obtain the database as a formatted XML document
+		String xml = this.produceXML();
+		
+		// Write the document using a file stream
+		FileOutputStream fout = new FileOutputStream(documentPath);
+		fout.write(xml.getBytes());
+		fout.close();
+	}
+	
+	public String getFilePath()
 	{
 		return documentPath;
 	}
-	
-	/*
-	public String getSchemaPath()
-	{
-		return schemaPath;
-	}
-	*/
 
-	public void setFilePath(String documentPath/*, String schemaPath*/) throws JAXBException, IOException, SAXException
+	public void setFilePath(String documentPath) throws JAXBException, IOException, SAXException
 	{
 		this.documentPath = documentPath;
-		/*this.schemaPath = schemaPath;*/
 		
 		// Create the unmarshaller
 		jc = JAXBContext.newInstance(Hotels.class);
@@ -77,36 +77,24 @@ public class HotelApplication
 		hotels = (Hotels)u.unmarshal(documentFin);
 		documentFin.close();
 	}
-
-	public Hotels getHotels()
-	{
-		return hotels;
-	}
 	
 	/**
 	 * Produces (marshalls) XML from the HotelApplication's existing set of hotels.
 	 * @return The list of hotels, formatted as XML.
 	 */
-	public String produceXML()
+	public String produceXML() throws Exception
 	{
-		try
-		{
-			// Initialize a marshaller to produce formatted XML from the Hotels List JAXB class
-			JAXBContext jc = JAXBContext.newInstance(Hotels.class);
-			Marshaller marshaller = jc.createMarshaller();
-			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+		if(jc == null)
+			throw new Exception("The JAXBContext has not been initialized (no database path set)");
+		
+		// Initialize a marshaller to produce formatted XML from the Hotels List JAXB class
+		Marshaller marshaller = jc.createMarshaller();
+		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 			
-			// XML is output to a String stream
-			StringWriter xmlString = new StringWriter();
-			marshaller.marshal(hotels, xmlString);
+		// XML is output to a String stream
+		StringWriter xmlString = new StringWriter();
+		marshaller.marshal(hotels, xmlString);
 			
-			return xmlString.toString();
-		}
-		catch (JAXBException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
+		return xmlString.toString();
 	}
 }

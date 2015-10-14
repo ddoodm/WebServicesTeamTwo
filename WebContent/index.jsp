@@ -17,7 +17,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" >
 		<link rel="stylesheet" type="text/css" href="style/main.css" >
-		<title>Hotel Service</title>
+		<title>Hotel Service 33</title>
 	</head>
 <body>
 
