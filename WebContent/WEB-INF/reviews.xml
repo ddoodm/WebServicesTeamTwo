@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <d:reviews
-	xmlns:d="http://www.uts.edu.au/31284/team2/wsd-reviews"
+	xmlns:d="http://www.uts.edu.au/31284/team2/wsd"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.uts.edu.au/31284/team2/wsd-reviews reviews.xsd ">
+	xsi:schemaLocation="http://www.uts.edu.au/31284/team2/wsd reviews.xsd ">
 	
 	<d:review id="1" hotel="1" title="A Test Review" rating="10" date="2014-08-02">
 		This is a test review. Please discard this test review.

@@ -1,8 +1,8 @@
 @XmlSchema(
-	    namespace = "http://www.uts.edu.au/31284/team2/wsd-hotels",
+	    namespace = "http://www.uts.edu.au/31284/team2/wsd",
 	    elementFormDefault = XmlNsForm.QUALIFIED,
 	    xmlns = {
-	        @XmlNs(prefix="d", namespaceURI="http://www.uts.edu.au/31284/team2/wsd-hotels")
+	        @XmlNs(prefix="d", namespaceURI="http://www.uts.edu.au/31284/team2/wsd")
 	    }
 	)  
 

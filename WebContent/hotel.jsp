@@ -1,3 +1,4 @@
+<%@page import="uts.wsd.teamtwo.ReviewsApplication"%>
 <%@page import="uts.wsd.teamtwo.HotelApplication"%>
 <%@ page import="uts.wsd.teamtwo.JAXB.*" %>
 
@@ -7,14 +8,22 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     
-<% String filePath = application.getRealPath(HotelApplication.HOTELS_DOCUMENT_PATH); %>
+<%
+	String
+		realHotelDbPath = application.getRealPath(HotelApplication.HOTELS_DOCUMENT_PATH),
+		realReviewsDbPath = application.getRealPath(ReviewsApplication.REVIEWS_DOCUMENT_PATH);
+%>
 <jsp:useBean id="hotelApp" class="uts.wsd.teamtwo.HotelApplication" scope="application">
-    <jsp:setProperty name="hotelApp" property="filePath" value="<%=filePath%>"/>
+    <jsp:setProperty name="hotelApp" property="filePath" value="<%=realHotelDbPath%>"/>
+</jsp:useBean>
+<jsp:useBean id="reviewApp" class="uts.wsd.teamtwo.ReviewsApplication" scope="application">
+    <jsp:setProperty name="reviewApp" property="filePath" value="<%=realReviewsDbPath%>"/>
 </jsp:useBean>
 
 <%
 	int hotelId = Integer.parseInt(request.getParameter("id"));
 	Hotel hotel = hotelApp.getHotel(hotelId);
+	Reviews reviews = reviewApp.getReviewsForHotel(hotel);
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -35,6 +44,16 @@
 		<h1><%= hotel.getName() %></h1>
 		<img id="bigHotelImage" src="images/hotels/TheShiodome.jpg" />
 		<p><%= hotel.getDescription() %></p>
+		
+		<c:set var="xmltext">
+			<%= 
+				// Marshal the hotel list into XML
+				reviewApp.produceXMLFor(reviews)
+			%>
+		</c:set>
+
+		<c:import url="hotelList.xsl" var="xslt" />
+		<x:transform xml="${xmltext}" xslt="${xslt}" />
 	</div>
 
 	<div id="trailer">

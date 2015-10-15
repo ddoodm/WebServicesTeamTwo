@@ -6,10 +6,10 @@
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    
-<% String filePath = application.getRealPath(HotelApplication.HOTELS_DOCUMENT_PATH); %>
+
 <jsp:useBean id="hotelApp" class="uts.wsd.teamtwo.HotelApplication" scope="application">
-    <jsp:setProperty name="hotelApp" property="filePath" value="<%=filePath%>"/>
+    <% String realHotelDbPath = application.getRealPath(HotelApplication.HOTELS_DOCUMENT_PATH); %>
+	<jsp:setProperty name="hotelApp" property="filePath" value="<%=realHotelDbPath%>"/>
 </jsp:useBean>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
