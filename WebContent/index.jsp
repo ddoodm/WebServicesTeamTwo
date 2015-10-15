@@ -1,6 +1,6 @@
 <%@page import="uts.wsd.teamtwo.HotelApplication"%>
 <%@ page import="uts.wsd.teamtwo.JAXB.*" %>
-<%@page import="uts.wsd.teamtwo.*"%>
+<%@ page import="uts.wsd.teamtwo.*"%>
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml" %>
@@ -72,26 +72,6 @@
 			reviews.</p>
 
 		<br />
-		<h1>HOTEL LISTING</h1>
-		<div id="hotelListing">
-			<div class="hotelListItem">
-				<img class="hotelListIcon" src="images/hotels/TheShiodome.jpg" />
-				<h2>The Shiodome</h2>
-				<p>Tokyo, Japan</p>
-				<p>Average Rating: 8 / 10</p>
-				<p>This is a sample review. The hotel is pretty alright.</p>
-			</div>
-			<div class="hotelListItem">
-				<img class="hotelListIcon"
-					src="images/hotels/ShinjukuKabukichoTower.jpg" />
-				<h2>Shinjuku Kabukicho Tower</h2>
-				<p>Tokyo, Japan</p>
-				<p>Average Rating: 7 / 10</p>
-				<p>Another sample review. The hotel is nice, but not quite as
-					good as others in the local area. I don't actually know what this
-					hotel is like, I'm just going off the picture.</p>
-			</div>
-		</div>
 
 		<c:set var="xmltext">
 			<%= 

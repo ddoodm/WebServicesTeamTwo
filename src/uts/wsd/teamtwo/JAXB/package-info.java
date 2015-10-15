@@ -2,9 +2,11 @@
 	    namespace = "http://www.uts.edu.au/31284/team2/wsd-hotels",
 	    elementFormDefault = XmlNsForm.QUALIFIED,
 	    xmlns = {
-	        @XmlNs(prefix="d", namespaceURI="http://www.uts.edu.au/31284/team2/wsd-hotels")
+	        @XmlNs(prefix="d", namespaceURI="http://www.uts.edu.au/31284/team2/wsd-hotels"),
+	        @XmlNs(namespaceURI = "http://www.uts.edu.au/31284/wsd-authors", prefix = "")
 	    }
-	)  
+	)
+
 
 package uts.wsd.teamtwo.JAXB;
  

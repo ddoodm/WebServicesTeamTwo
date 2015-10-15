@@ -3,12 +3,17 @@ package uts.wsd.teamtwo;
 import java.io.Serializable;
 
 import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import uts.wsd.teamtwo.JAXB.IDAutoIncrementAdapter;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Author implements Serializable{
-	
-    @XmlAttribute(name = "id")
-    private int id;
+    
+	@XmlAttribute(name = "id", required = true)
+    @XmlSchemaType(name = "unsignedInt")
+    @XmlJavaTypeAdapter(IDAutoIncrementAdapter.class)
+    protected Integer id;
     @XmlElement(required = true)
 	private String name;
     @XmlElement(required = true)
@@ -45,5 +50,8 @@ public class Author implements Serializable{
 	public void setPassword(String password) {
 		this.password = password;
 	}
+    public long getId() {
+        return id;
+    }
 
 }

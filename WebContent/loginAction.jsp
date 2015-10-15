@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="uts.wsd.teamtwo.*"%>
-<% String filePath = application.getRealPath("WEB-INF/authors.xml"); %>
+<% String filePath = application.getRealPath(HotelApplication.AUTHORS_DOCUMENT_PATH); %>
 <jsp:useBean id="hotelApp2" class="uts.wsd.teamtwo.HotelApplication"
 	scope="application">
 	<jsp:setProperty name="hotelApp2" property="filePath"
