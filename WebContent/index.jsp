@@ -1,5 +1,5 @@
-<%@page import="uts.wsd.teamtwo.HotelApplication"%>
-<%@ page import="uts.wsd.teamtwo.JAXB.*" %>
+<%@page import="uts.wsd.teamtwo.*"%>
+<%@page import="uts.wsd.teamtwo.JAXB.*"%>
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml" %>
@@ -22,10 +22,41 @@
 <body>
 
 	<div id="head">
-		<img src="style/Hotels33Logo.png"/>
+	<div>
+			<%
+				Author author = (Author)session.getAttribute("author");
+				if (author == null) {
+			%>
+
+			<div
+				style="background: #eee; text-align: right; width: 100%;">You
+				are not logged in</div>
+			<div style="text-align: right;">
+				<a href="login.jsp">Login</a>
+			</div>
+
+			<%
+				} else {
+			%>
+
+			<div
+				style="background: #eee; border: solid 1px #333; text-align: right; width: 100%;">
+				You are logged in as <%=author.getName() %>&lt;<%=author.getEmail() %>
+			</div>
+			<div style="text-align: right;">
+				<a href="logout.jsp">Logout</a>
+			</div>
+
+			<%
+				}
+			%>
+		</div>
+		<img src="style/Hotels33Logo.png" />
+		
 	</div>
 
 	<div id="wrapper">
+	
 		<p id="crumbs">Home</p>
 	
 		<h1>WELCOME TO <i>HOTEL SERVICE 33</i></h1>
@@ -51,9 +82,8 @@
 	</div>
 
 	<div id="trailer">
-		<p>
-			Hotel Service 33 is Copyright &copy; 2015 UTS Web Services Spring 2015 Team 33
-		</p>
+		<p>Hotel Service 33 is Copyright &copy; 2015 UTS Web Services
+			Spring 2015 Team 33</p>
 	</div>
 
 </body>

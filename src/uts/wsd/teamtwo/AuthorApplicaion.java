@@ -17,25 +17,20 @@ import org.xml.sax.SAXException;
 
 import uts.wsd.teamtwo.JAXB.*;
 
-public class HotelApplication extends GenericApplication<Hotels>
+public class AuthorApplicaion extends GenericApplication<Authors>
 {
 	public static final String
-		HOTELS_DOCUMENT_PATH = "WEB-INF/hotels.xml",
-		HOTELS_SCHEMA_PATH = "WEB-INF/hotels.xsd";
+		AUTHORS_DOCUMENT_PATH = "WEB-INF/authors.xml",
+		AUTHORS_SCHEMA_PATH = "WEB-INF/authors.xsd";
 
-	public HotelApplication()
+	public AuthorApplicaion()
 	{
 		// TODO Auto-generated constructor stub
-		jaxbClass = Hotels.class;
-	}
-
-	public Hotels getHotels()
-	{
-		return resource;
+		jaxbClass = Authors.class;
 	}
 	
-	public Hotel getHotel(int hotelId)
+	public Authors getAuthors()
 	{
-		return resource.getHotel(hotelId);
+		return this.resource;
 	}
 }
