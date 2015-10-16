@@ -8,6 +8,8 @@
 
 package uts.wsd.teamtwo.JAXB;
 
+import java.io.Serializable;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -31,9 +33,9 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
     "imageUrl",
     "description"
 })
-public class Hotel
+public class Hotel implements Serializable
 {
-    @XmlElement(required = true)
+	@XmlElement(required = true)
     protected String name;
     @XmlElement(required = true)
     protected String country;
@@ -57,6 +59,10 @@ public class Hotel
     @XmlSchemaType(name = "unsignedInt")
     @XmlJavaTypeAdapter(IDAutoIncrementAdapter.class)
     protected Integer id;
+    
+    // Constructor for JavaBean
+    public Hotel ()
+    {  }
 
     /**
      * Gets the value of the name property.
