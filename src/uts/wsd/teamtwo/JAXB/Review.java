@@ -30,6 +30,13 @@ public class Review implements Serializable
 	private Integer hotelId;
 	
 	/**
+	 * The unique ID of the author that composed the review
+	 */
+	@XmlAttribute(name = "author", required = true)
+    @XmlSchemaType(name = "unsignedInt")
+	private Integer authorId;
+	
+	/**
 	 * The title of the review (heading)
 	 */
 	@XmlAttribute(name = "title", required = true)
@@ -63,10 +70,17 @@ public class Review implements Serializable
 	}
 
 	/**
-	 * @return the hotelId
+	 * @return the hotel's ID
 	 */
 	public Integer getHotelId() {
 		return hotelId;
+	}
+	
+	/**
+	 * @return the author's ID
+	 */
+	public Integer getAuthorId() {
+		return authorId;
 	}
 
 	/**

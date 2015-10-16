@@ -2,8 +2,8 @@
 
 <xsd:schema
  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
- targetNamespace="http://www.uts.edu.au/31284/team2/wsd-hotels"
- xmlns="http://www.uts.edu.au/31284/team2/wsd-hotels"
+ targetNamespace="http://www.uts.edu.au/31284/team2/wsd"
+ xmlns="http://www.uts.edu.au/31284/team2/wsd"
  elementFormDefault="qualified">
  
  <xsd:element name="hotels">

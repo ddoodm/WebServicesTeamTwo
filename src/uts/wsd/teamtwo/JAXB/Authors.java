@@ -1,4 +1,4 @@
-package uts.wsd.teamtwo;
+package uts.wsd.teamtwo.JAXB;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -16,7 +16,6 @@ public class Authors implements Serializable {
 	private ArrayList<Author> list = new ArrayList<Author>();
 
 	public Authors() {
-		super();
 		// TODO Auto-generated constructor stub
 	}
 

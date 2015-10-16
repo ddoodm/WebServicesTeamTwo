@@ -1,11 +1,9 @@
-package uts.wsd.teamtwo;
+package uts.wsd.teamtwo.JAXB;
 
 import java.io.Serializable;
 
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-
-import uts.wsd.teamtwo.JAXB.IDAutoIncrementAdapter;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Author implements Serializable{
@@ -22,7 +20,6 @@ public class Author implements Serializable{
 	private String password;
 
 	public Author() {
-		super();
 		// TODO Auto-generated constructor stub
 	}
 	public Author(String name, String email, String password) {

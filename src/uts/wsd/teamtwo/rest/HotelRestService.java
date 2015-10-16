@@ -35,8 +35,7 @@ public class HotelRestService
 				hotelApp = new HotelApplication();
 				
 				hotelApp.setFilePath(
-						application.getRealPath(HotelApplication.HOTELS_DOCUMENT_PATH)/*,
-						application.getRealPath(HOTELS_SCHEMA_PATH)*/);
+						application.getRealPath(HotelApplication.HOTELS_DOCUMENT_PATH));
 				
 				application.setAttribute("hotelApp", hotelApp);
 				System.out.println("==== HotelRestService.getHotelApp(): Instantiated a new HotelApp.");
