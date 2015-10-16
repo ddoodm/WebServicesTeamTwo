@@ -4,7 +4,8 @@
 	    xmlns = {
 	        @XmlNs(prefix="d", namespaceURI="http://www.uts.edu.au/31284/team2/wsd")
 	    }
-	)  
+	)
+
 
 package uts.wsd.teamtwo.JAXB;
  
