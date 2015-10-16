@@ -19,6 +19,7 @@
 			<xsd:extension base="xsd:string">
 				<xsd:attribute name="id" type="xsd:unsignedInt" use="required" />
 				<xsd:attribute name="hotel" type="xsd:unsignedInt" use="required" />
+				<xsd:attribute name="author" type="xsd:unsignedInt" use="required" />
 				<xsd:attribute name="title" type="titleType" use="required" />
 				<xsd:attribute name="rating" type="ratingType" use="required" />
 				<xsd:attribute name="date" type="xsd:date" use="required" />

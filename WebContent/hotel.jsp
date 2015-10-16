@@ -47,12 +47,12 @@
 		
 		<c:set var="xmltext">
 			<%= 
-				// Marshal the hotel list into XML
+				// Marshal the review list into XML
 				reviewApp.produceXMLFor(reviews)
 			%>
 		</c:set>
 
-		<c:import url="hotelList.xsl" var="xslt" />
+		<c:import url="reviewList.xsl" var="xslt" />
 		<x:transform xml="${xmltext}" xslt="${xslt}" />
 	</div>
 
