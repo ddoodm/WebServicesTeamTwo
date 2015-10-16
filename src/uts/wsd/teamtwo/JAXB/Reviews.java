@@ -21,6 +21,11 @@ public class Reviews implements Serializable
 	{
 		this.list = list;
 	}
+	
+	public Boolean isEmpty()
+	{
+		return list.size() == 0;
+	}
 
 	/**
 	 * @return A reference to the ArrayList of reviews
