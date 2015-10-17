@@ -1,3 +1,4 @@
+<%@page import="uts.wsd.teamtwo.ComposeReviewErrorFields"%>
 <%@page import="uts.wsd.teamtwo.ReviewsApplication"%>
 <%@page import="uts.wsd.teamtwo.HotelApplication"%>
 <%@ page import="uts.wsd.teamtwo.JAXB.*" %>
@@ -48,30 +49,8 @@
 		
 		<!-- Provide review composition UI to registered reviewers -->
 		<% if(author != null) { %>
-		<h1>Compose a New Review</h1>
-		<form id="composeReviewForm" method="post" action="postReview">
-			<table>
-				<tr>
-					<td width="150">Title</td>
-					<td width="300"><input type="text" name="title"></td>
-				</tr>
-				<tr>
-					<td width="150">Rating</td>
-					<td width="300"><input type="text" name="rating"> / 10</td>
-				</tr>
-				<tr>
-					<td width="150">Message</td>
-					<td width="300"><textarea name="message" rows="4" cols="50"></textarea></td>
-				</tr>
-				<tr>
-					<td width="150"></td>
-					<td width="300"><input type="submit" value="Post Review"></td>
-				</tr>
-			</table>
-			
-			<input type="hidden" name="hotelId" value="<%= hotelId %>" />
-		</form>
-		<% } // End if(author != null) %>
+			<%@include file="include_composeReview.jsp" %>
+		<% } %>
 		
 	</div>
 

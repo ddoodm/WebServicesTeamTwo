@@ -40,12 +40,8 @@
   </servlet-mapping>
   
   <servlet>
-    <servlet-name>postReview</servlet-name>
-    <servlet-class>uts.wsd.teamtwo.PostReview</servlet-class>
+    <servlet-name>reviewServlet</servlet-name>
+    <servlet-class>uts.wsd.teamtwo.ReviewServlet</servlet-class>
   </servlet>
-  <servlet-mapping>
-    <servlet-name>postReview</servlet-name>
-    <url-pattern>/postReview</url-pattern>
-  </servlet-mapping>
   
 </web-app>

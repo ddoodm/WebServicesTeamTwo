@@ -39,6 +39,15 @@ public class Reviews implements Serializable
 		// Add the review to the list
 		list.add(review);
 	}
+	
+	/**
+	 * Removes a review from the list of reviews in memory.
+	 * @param review The review to delete
+	 */
+	public void deleteReview(Review review)
+	{
+		list.remove(review);
+	}
 
 	/**
 	 * @return A reference to the ArrayList of reviews
