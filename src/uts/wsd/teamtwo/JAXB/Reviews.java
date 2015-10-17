@@ -21,6 +21,24 @@ public class Reviews implements Serializable
 	{
 		this.list = list;
 	}
+	
+	public Boolean isEmpty()
+	{
+		return list.size() == 0;
+	}
+	
+	/**
+	 * Add a review to the list of reviews in memory
+	 * @param review The review to add
+	 */
+	public void postReview(Review review)
+	{
+		// The new review ID is the last review ID + 1
+		review.setId(list.get(list.size()-1).getId() + 1);
+		
+		// Add the review to the list
+		list.add(review);
+	}
 
 	/**
 	 * @return A reference to the ArrayList of reviews
@@ -28,6 +46,21 @@ public class Reviews implements Serializable
 	public ArrayList<Review> getReviews()
 	{
 		return list;
+	}
+	
+	public Review getReview(int id)
+	{
+		for(Review r : list)
+			if(r.getId() == id)
+				return r;
+		return null;
+	}
+	
+	public Reviews filterById(int id)
+	{
+		ArrayList<Review> filteredList = new ArrayList<Review>();
+		filteredList.add(getReview(id));
+		return new Reviews(filteredList);
 	}
 	
 	public Reviews filterByHotel(Hotel hotel)

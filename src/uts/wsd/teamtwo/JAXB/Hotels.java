@@ -29,6 +29,19 @@ public class Hotels implements Serializable {
 		this.list = list;
 	}
 	
+	public Hotels filterById(int hotelId)
+	{
+		ArrayList<Hotel> filteredList = new ArrayList<Hotel>();
+		for(Hotel hotel : list)
+			if(hotel.getId() == hotelId)
+			{
+				filteredList.add(hotel);
+				break;
+			}
+		
+		return new Hotels(filteredList);
+	}
+	
 	public Hotels filterByName(String name)
 	{
 		ArrayList<Hotel> filteredList = new ArrayList<Hotel>();

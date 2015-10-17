@@ -3,10 +3,10 @@
 *
 {
 	/* Transition the entire document */
-	-webkit-transition: all 0.1s;
-	-moz-transition: all 0.1s;
-	-o-transition: all 0.1s;
-	transition: all 0.1s;
+	-webkit-transition: all 0.2s;
+	-moz-transition: all 0.2s;
+	-o-transition: all 0.2s;
+	transition: all 0.2s;
 	
 	/* Use "inner-padding" boxing style */
 	box-sizing: border-box;
@@ -143,12 +143,45 @@ h2
 #bigHotelImage
 {
 	display:block;
-	height:325px;
+	height:200px;
 	width:auto;
-	margin: 25px auto 25px auto;
+	margin: 0 25px 25px 0;
+	
+	float: right;
 	
 	border: 2px solid white;
 	-webkit-box-shadow: 0px 0px 22px 0px rgba(0,0,0,0.40);
 	-moz-box-shadow: 0px 0px 22px 0px rgba(0,0,0,0.40);
 	box-shadow: 0px 0px 22px 0px rgba(0,0,0,0.40);
+}
+
+#hotelDetailDiv
+{
+	display: inline-table;
+	width:100%;
+}
+
+#reviewListTable
+{
+	margin-bottom: 25px;
+}
+
+#reviewListTable tr
+{
+	background-color: #FFF;
+}
+
+#reviewListTable tr:hover
+{
+	background-color: #EEE;
+}
+
+#reviewListTable tr:first-of-type
+{
+	background-color: #EEE;
+}
+
+#composeReviewForm
+{
+	margin-bottom: 25px;
 }

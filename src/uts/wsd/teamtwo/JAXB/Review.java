@@ -1,10 +1,14 @@
 package uts.wsd.teamtwo.JAXB;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 /**
@@ -61,12 +65,61 @@ public class Review implements Serializable
 	 */
 	@XmlValue
 	private String message;
+	
+	/**
+	 * Empty constructor for JAXB initialization
+	 */
+	public Review () {  }
+	
+	/**
+	 * Complete constructor for servlet initialization
+	 */
+	public Review (Integer hotelId, long authorId, String title, Integer rating, Date date, String message)
+	{
+		this.hotelId = hotelId;
+		this.authorId = (int)authorId;
+		this.title = title;
+		this.rating = rating;
+		this.message = message;
+		
+		// Parse date
+		this.date = parseStringDate(date);
+	}
+	
+	/**
+	 * Parse Date date to an XMLGregorianCalendar date.
+	 * @param stdDate The Date type date.
+	 * @return The date as an XMLGregorianCalendar.
+	 */
+	private XMLGregorianCalendar parseStringDate(Date stdDate)
+	{
+		try
+		{
+			GregorianCalendar calendar = new GregorianCalendar();
+			calendar.setTime(stdDate);
+			
+			DatatypeFactory dtFactory = DatatypeFactory.newInstance();
+			return dtFactory.newXMLGregorianCalendar(calendar);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			return null;
+		}
+	}
 
 	/**
 	 * @return the id
 	 */
 	public Integer getId() {
 		return id;
+	}
+	
+	/**
+	 * @param the review's ID
+	 */
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	/**

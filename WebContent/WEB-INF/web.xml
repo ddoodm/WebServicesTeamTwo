@@ -9,14 +9,12 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  
- <servlet>
+  <servlet>
     <servlet-name>Jersey REST Service</servlet-name>
     <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
-     <!-- Register resources and providers under com.vogella.jersey.first package. -->
     <init-param>
-        <param-name>jersey.config.server.provider.packages</param-name>
-        <param-value>uts.wsd.teamtwo.rest</param-value>
+      <param-name>jersey.config.server.provider.packages</param-name>
+      <param-value>uts.wsd.teamtwo.rest</param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
@@ -24,24 +22,30 @@
     <servlet-name>Jersey REST Service</servlet-name>
     <url-pattern>/rest/*</url-pattern>
   </servlet-mapping>
-  
- <listener>
-  <listener-class>
+  <listener>
+    <listener-class>
    com.sun.xml.ws.transport.http.servlet.WSServletContextListener
   </listener-class>
- </listener>
- 
- <servlet>
-  <servlet-name>SOAP Web Services</servlet-name>
-  <servlet-class>
+  </listener>
+  <servlet>
+    <servlet-name>SOAP Web Services</servlet-name>
+    <servlet-class>
    com.sun.xml.ws.transport.http.servlet.WSServlet
   </servlet-class>
-  <load-on-startup>1</load-on-startup>
- </servlet>
- 
- <servlet-mapping>
-  <servlet-name>SOAP Web Services</servlet-name>
-  <url-pattern>/soap/*</url-pattern>
- </servlet-mapping>
-
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SOAP Web Services</servlet-name>
+    <url-pattern>/soap/*</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>postReview</servlet-name>
+    <servlet-class>uts.wsd.teamtwo.PostReview</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>postReview</servlet-name>
+    <url-pattern>/postReview</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

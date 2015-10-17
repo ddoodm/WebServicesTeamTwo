@@ -33,4 +33,17 @@ public class AuthorApplicaion extends GenericApplication<Authors>
 	{
 		return this.resource;
 	}
+	
+	public Author getAuthor(long id)
+	{
+		return resource.getAuthor(id);
+	}
+	
+	public Authors filterById(long id)
+	{
+		if(resource == null)
+			System.out.println("==== Resource null in filterById of AuthorApp");
+		
+		return resource.filterById(id);
+	}
 }
