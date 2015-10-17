@@ -19,9 +19,7 @@
 			<img class="hotelListIcon" src="images/hotels/{$image}" />
 			<h2><a href='hotel.jsp?id={$hotelId}'><xsl:value-of select="d:name"/></a></h2>
 			<p><xsl:value-of select="d:city"/>, <xsl:value-of select="d:country"/></p>
-			<p>Average Rating: TEST / 10</p>
 			<p><xsl:value-of select="d:description"/></p>
-			<p>Reviews: TEST</p>
 		</div>
 	</xsl:template>
 	

@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<authors xmlns="http://www.uts.edu.au/31284/wsd"
+<authors xmlns="http://www.uts.edu.au/31284/team2/wsd"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.uts.edu.au/31284/wsd authors.xsd">
+	xsi:schemaLocation="http://www.uts.edu.au/31284/team2/wsd authors.xsd">
 	<author id="1">
 		<name>Ryan Heise</name>
 		<email>ryan@gmail.com</email>
 		<password>12345</password>
 	</author>
 		<author id="2">
-		<name>Ryan Heise</name>
-		<email>ryan@gmail.com</email>
-		<password>12345</password>
+		<name>Bob James</name>
+		<email>bobbyj@gmail.com</email>
+		<password>thek3ys</password>
 	</author>
 		<author id="3">
-		<name>Ryan Heise</name>
-		<email>ryan@gmail.com</email>
-		<password>12345</password>
+		<name>Masato Honda</name>
+		<email>hondamas@gmail.jp</email>
+		<password>alto</password>
 	</author>
-
 </authors>

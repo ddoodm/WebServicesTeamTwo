@@ -18,13 +18,14 @@ public class Authors implements Serializable {
 	public Authors() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	public Authors(ArrayList<Author> list)
+	{
+		this.list = list;
+	}
 
 	public ArrayList<Author> getList() {
 		return list;
-	}
-
-	public void setList(ArrayList<Author> list) {
-		this.list = list;
 	}
 
 	public Author login(String email, String password) {
@@ -41,5 +42,20 @@ public class Authors implements Serializable {
 				return author;
 		}
 		return null;
+	}
+	
+	public Author getAuthor(long id) {
+		for (Author author : list) {
+			if (author.getId() == id)
+				return author;
+		}
+		return null;
+	}
+	
+	public Authors filterById(long id)
+	{
+		ArrayList<Author> filteredList = new ArrayList<Author>();
+		filteredList.add(getAuthor(id));
+		return new Authors(filteredList);
 	}
 }

@@ -26,41 +26,53 @@
 	Reviews reviews = reviewApp.getReviewsForHotel(hotel);
 %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" >
-		<link rel="stylesheet" type="text/css" href="style/main.css" >
-		<title>Hotel Service 33</title>
-	</head>
-<body>
-
-	<div id="head">
-		<img src="style/Hotels33Logo.png"/>
-	</div>
+<%@include file="include_header.jsp" %>
 
 	<div id="wrapper">
-		<p id="crumbs"><a href="index.jsp">Home</a> > Hotel</p>
-		<h1><%= hotel.getName() %></h1>
-		<img id="bigHotelImage" src="images/hotels/TheShiodome.jpg" />
-		<p><%= hotel.getDescription() %></p>
+		<p id="crumbs"><a href="index.jsp">Home</a> &gt; Hotel</p>
 		
-		<c:set var="xmltext">
+		<c:set var="hotelXml">
+			<%= hotelApp.produceXMLFor(hotelApp.getHotels().filterById(hotelId)) %>
+		</c:set>
+		<c:import url="hotelDetail.xsl" var="hotelXslt" />
+		<x:transform xml="${hotelXml}" xslt="${hotelXslt}" />
+		
+		<c:set var="reviewListXml">
 			<%= 
 				// Marshal the review list into XML
 				reviewApp.produceXMLFor(reviews)
 			%>
 		</c:set>
-
-		<c:import url="reviewList.xsl" var="xslt" />
-		<x:transform xml="${xmltext}" xslt="${xslt}" />
+		<c:import url="reviewList.xsl" var="reviewListXslt" />
+		<x:transform xml="${reviewListXml}" xslt="${reviewListXslt}" />
+		
+		<!-- Provide review composition UI to registered reviewers -->
+		<% if(author != null) { %>
+		<h1>Compose a New Review</h1>
+		<form id="composeReviewForm" method="post" action="postReview">
+			<table>
+				<tr>
+					<td width="150">Title</td>
+					<td width="300"><input type="text" name="title"></td>
+				</tr>
+				<tr>
+					<td width="150">Rating</td>
+					<td width="300"><input type="text" name="rating"> / 10</td>
+				</tr>
+				<tr>
+					<td width="150">Message</td>
+					<td width="300"><textarea name="message" rows="4" cols="50"></textarea></td>
+				</tr>
+				<tr>
+					<td width="150"></td>
+					<td width="300"><input type="submit" value="Post Review"></td>
+				</tr>
+			</table>
+			
+			<input type="hidden" name="hotelId" value="<%= hotelId %>" />
+		</form>
+		<% } // End if(author != null) %>
+		
 	</div>
 
-	<div id="trailer">
-		<p>
-			Hotel Service 33 is Copyright &copy; 2015 UTS Web Services Spring 2015 Team 33
-		</p>
-	</div>
-
-</body>
-</html>
+<%@include file="include_footer.jsp" %>

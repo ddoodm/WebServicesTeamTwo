@@ -60,6 +60,7 @@ public abstract class GenericApplication <DTO>
 		catch (Exception e)
 		{
 			e.printStackTrace();
+			System.out.println("==== GenericApplicaion error in setFilePath for " + documentPath);
 		}
 	}
 	
