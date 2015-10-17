@@ -49,7 +49,7 @@
 		<!-- Provide review composition UI to registered reviewers -->
 		<% if(author != null) { %>
 		<h1>Compose a New Review</h1>
-		<form id="composeReviewForm" method="post" action="postReview">
+		<form id="composeReviewForm" method="post" action="reviewServlet">
 			<table>
 				<tr>
 					<td width="150">Title</td>
@@ -69,6 +69,7 @@
 				</tr>
 			</table>
 			
+			<input type="hidden" name="operation" value="postReview" />
 			<input type="hidden" name="hotelId" value="<%= hotelId %>" />
 		</form>
 		<% } // End if(author != null) %>

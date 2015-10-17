@@ -19,20 +19,21 @@ import javax.xml.ws.handler.MessageContext;
 import org.xml.sax.SAXException;
 
 import uts.wsd.teamtwo.JAXB.Author;
+import uts.wsd.teamtwo.JAXB.Hotel;
 import uts.wsd.teamtwo.JAXB.Review;
 
 /**
  * Servlet implementation class PostReview
  */
-@WebServlet("/PostReview")
-public class PostReview extends HttpServlet
+@WebServlet("/reviewServlet")
+public class ReviewServlet extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PostReview() {
+    public ReviewServlet() {
         super();
     }
     
@@ -78,6 +79,17 @@ public class PostReview extends HttpServlet
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
+		String operation = request.getParameter("operation");
+		
+		switch(operation)
+		{
+		case "postReview":		postReview(request, response);		break;
+		case "deleteReview":	deleteReview(request, response);	break;
+		}
+	}
+	
+	private void postReview(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
+	{
 		Author author = (Author) request.getSession().getAttribute("author");
 		if(author == null)
 			return;
@@ -101,9 +113,49 @@ public class PostReview extends HttpServlet
 		}
 		
 		// Redirect to the hotel page
+		redirectToHotelPage(hotelId, request, response);
+	}
+	
+	private void deleteReview(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
+	{
+		ReviewsApplication reviewApp;
+		try {
+			reviewApp = getReviewsApp(request.getServletContext());
+		} catch (SAXException | JAXBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return;
+		}
+		
+		// Double-check that the author is logged in
+		Author author = (Author) request.getSession().getAttribute("author");
+		if(author == null)
+			return;
+		
+		// Obtain the review
+		int reviewId = Integer.parseInt(request.getParameter("reviewId"));
+		Review review = reviewApp.getReview(reviewId);
+		int hotelId = review.getHotelId();
+		
+		// Double-check that the author owns the review
+		if(review.getAuthorId() != author.getId())
+			return;
+		
+		// Request to delete the review
+		reviewApp.deleteReview(review);
+		
+		// Redirect to the hotel page for this review
+		redirectToHotelPage(hotelId, request, response);
+	}
+	
+	/**
+	 * Redirect the client to the hotel detail page with the specified ID
+	 * @param hotelId The ID of the hotel page to display
+	 */
+	private void redirectToHotelPage(int hotelId, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
 		String redirectUrl = "hotel.jsp?id=" + hotelId;
 		RequestDispatcher dispatcher = request.getRequestDispatcher(redirectUrl);
 		dispatcher.forward(request, response);
 	}
-
 }

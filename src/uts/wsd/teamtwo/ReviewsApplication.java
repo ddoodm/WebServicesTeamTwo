@@ -27,6 +27,17 @@ public class ReviewsApplication extends GenericApplication<Reviews> {
 		}
 	}
 	
+	public void deleteReview(Review review)
+	{
+		resource.deleteReview(review);
+		try {
+			updateDatabase();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public Reviews filterById(int id)
 	{
 		return resource.filterById(id);
