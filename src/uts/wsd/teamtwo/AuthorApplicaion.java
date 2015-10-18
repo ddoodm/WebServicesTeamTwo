@@ -29,6 +29,11 @@ public class AuthorApplicaion extends GenericApplication<Authors>
 		jaxbClass = Authors.class;
 	}
 	
+	public Author login(String email, String password)
+	{
+		return resource.login(email, password);
+	}
+	
 	public Authors getAuthors()
 	{
 		return this.resource;
