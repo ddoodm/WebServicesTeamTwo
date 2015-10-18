@@ -28,6 +28,11 @@
 <%
 	int reviewId = Integer.parseInt(request.getParameter("id"));
 	Review review = reviewApp.getReview(reviewId);
+	
+	// If the review is not defined, redirect to the 404 document
+	if(review == null)
+		%><c:redirect url="/404.jsp"/><%
+	
 	Hotel hotel = hotelApp.getHotel(review.getHotelId());
 	Author reviewAuthor = authorApp.getAuthor(review.getAuthorId());
 %>

@@ -29,6 +29,9 @@
 		<p>We provide REST and SOAP services so that your own applications
 			may access our vast database of hotel listings and comprehensive
 			reviews.</p>
+			
+		<p>If you happen to be one of our fine authors, please make yourself
+		known to our friendly JSP server by <b>logging in at the bottom of the page</b>.</p>
 
 		<br />
 

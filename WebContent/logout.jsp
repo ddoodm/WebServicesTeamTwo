@@ -1,17 +1,32 @@
+<%@page import="uts.wsd.teamtwo.*"%>
+<%@page import="uts.wsd.teamtwo.JAXB.*"%>
+
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+	pageEncoding="ISO-8859-1"%>
 
-<% session.invalidate(); %>
+<%
+	if(session != null)
+	{
+		session.invalidate();
+		%><jsp:forward page="index.jsp" /><%
+	}
+%>
 
-</head>
-<body>
+<%@include file="include_header.jsp"%>
+
+<div id="wrapper">
+
+	<p id="crumbs">
+		<a href="index.jsp">Home</a> &gt; Logout
+	</p>
+
+	<h1>Log Out</h1>
 
 <p>You have been logged out. Click <a href="index.jsp">here</a> to return to the main page.</p>
 
-</body>
-</html>
+</div>
+
+<%@include file="include_footer.jsp"%>

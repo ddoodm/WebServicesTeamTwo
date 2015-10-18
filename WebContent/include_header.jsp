@@ -1,4 +1,8 @@
-<% Author author = (Author)session.getAttribute("author"); %>
+<%
+	Author author = null;
+	if(session != null)
+		author = (Author)session.getAttribute("author");
+%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -10,5 +14,5 @@
 <body>
 
 	<div id="head">
-		<img src="style/Hotels33Logo.png" />
+		<a href="index.jsp"><img src="style/Hotels33Logo.png" /></a>
 	</div>
