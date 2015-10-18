@@ -34,8 +34,14 @@
  		<xsd:element name="description" type="xsd:string" />
  	</xsd:sequence>
  	
- 	<xsd:attribute name="id" type="xsd:unsignedInt" use="required" />
+ 	<xsd:attribute name="id" type="idType" use="required" />
  </xsd:complexType>
+ 
+ 	<xsd:simpleType name="idType">
+		<xsd:restriction base="xsd:unsignedInt">
+			<xsd:minInclusive value="1" />
+		</xsd:restriction>
+	</xsd:simpleType>
  
   <xsd:simpleType name="telephoneType">
  	<xsd:restriction base="xsd:string">

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.uts.edu.au/31284/team2/wsd" xmlns="http://www.uts.edu.au/31284/team2/wsd"
+	elementFormDefault="qualified">
+
+	<xsd:element name="authors">
+		<xsd:complexType>
+			<xsd:sequence minOccurs="1" maxOccurs="unbounded">
+				<xsd:element name="author" type="author" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:complexType name="author">
+		<xsd:sequence>
+			<xsd:element name="name" type="nameType" />
+			<xsd:element name="email" type="emailType" />
+			<xsd:element name="password" type="xsd:string" />
+		</xsd:sequence>
+
+		<xsd:attribute name="id" type="idType" use="required" />
+	</xsd:complexType>
+
+	<xsd:simpleType name="idType">
+		<xsd:restriction base="xsd:unsignedInt">
+			<xsd:minInclusive value="1" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="emailType">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[_a-zA-Z0-9\-]+@[_a-zA-Z0-9\-]+(\.[a-z]+)+" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="nameType">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="([A-Z]'?[-aA-zZ]+\s?)+" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+</xsd:schema>

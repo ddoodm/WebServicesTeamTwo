@@ -17,7 +17,7 @@
 	<xsd:complexType name="review">
 		<xsd:simpleContent>
 			<xsd:extension base="xsd:string">
-				<xsd:attribute name="id" type="xsd:unsignedInt" use="required" />
+				<xsd:attribute name="id" type="idType" use="required" />
 				<xsd:attribute name="hotel" type="xsd:unsignedInt" use="required" />
 				<xsd:attribute name="author" type="xsd:unsignedInt" use="required" />
 				<xsd:attribute name="title" type="titleType" use="required" />
@@ -26,6 +26,12 @@
 			</xsd:extension>
 		</xsd:simpleContent>
 	</xsd:complexType>
+	
+	<xsd:simpleType name="idType">
+		<xsd:restriction base="xsd:unsignedInt">
+			<xsd:minInclusive value="1" />
+		</xsd:restriction>
+	</xsd:simpleType>
  
 	<xsd:simpleType name="titleType">
 		<xsd:restriction base="xsd:string">

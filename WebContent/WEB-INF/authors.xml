@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<authors xmlns="http://www.uts.edu.au/31284/team2/wsd"
+<d:authors
+	xmlns:d="http://www.uts.edu.au/31284/team2/wsd"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.uts.edu.au/31284/team2/wsd authors.xsd">
-	<author id="1">
-		<name>Ryan Heise</name>
-		<email>ryan@gmail.com</email>
-		<password>12345</password>
-	</author>
-		<author id="2">
-		<name>Bob James</name>
-		<email>bobbyj@gmail.com</email>
-		<password>thek3ys</password>
-	</author>
-		<author id="3">
-		<name>Masato Honda</name>
-		<email>hondamas@gmail.jp</email>
-		<password>alto</password>
-	</author>
-</authors>
+	xsi:schemaLocation="http://www.uts.edu.au/31284/team2/wsd authors.xsd ">
+	
+	<d:author id="1">
+		<d:name>Ryan Heise</d:name>
+		<d:email>ryan@gmail.com</d:email>
+		<d:password>12345</d:password>
+	</d:author>
+	<d:author id="2">
+		<d:name>Bob James</d:name>
+		<d:email>bobbyj@gmail.com</d:email>
+		<d:password>thek3ys</d:password>
+	</d:author>
+	<d:author id="3">
+		<d:name>Masato Honda</d:name>
+		<d:email>hondamas@gmail.jp</d:email>
+		<d:password>alto</d:password>
+	</d:author>
+	
+</d:authors>
