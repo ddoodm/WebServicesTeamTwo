@@ -22,8 +22,15 @@
 </jsp:useBean>
 
 <%
+	// Obtain hotel reference from hotel ID GET parameter
 	int hotelId = Integer.parseInt(request.getParameter("id"));
 	Hotel hotel = hotelApp.getHotel(hotelId);
+	
+	// If the hotel is not defined, redirect to the 404 document
+	if(hotel == null)
+		%><c:redirect url="/404.jsp"/><%
+	
+	// Otherwise, we can obtain the review list for the hotel
 	Reviews reviews = reviewApp.getReviewsForHotel(hotel);
 %>
 
