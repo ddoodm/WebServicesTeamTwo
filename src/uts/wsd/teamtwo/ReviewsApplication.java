@@ -52,4 +52,9 @@ public class ReviewsApplication extends GenericApplication<Reviews> {
 	{
 		return resource.getReview(id);
 	}
+	
+	public Reviews getReviews()
+	{
+		return resource;
+	}
 }

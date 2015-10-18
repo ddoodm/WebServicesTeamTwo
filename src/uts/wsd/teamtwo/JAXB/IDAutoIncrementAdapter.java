@@ -17,7 +17,13 @@ public class IDAutoIncrementAdapter extends XmlAdapter<Integer, Integer>
     @Override
     public Integer unmarshal(Integer v) throws Exception
     {
-        return id++;
+    	// Custom review counter by Team 33:
+    	// Review IDs begin at 1,
+    	// all IDs are unique,
+    	// but there may be gaps.
+    	// IE: 1, 2, 7, 8, 10
+    	if(v > id) return id = v;
+    	else return id++;
     }
 
     @Override

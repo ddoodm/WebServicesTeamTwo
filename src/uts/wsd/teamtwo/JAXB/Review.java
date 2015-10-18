@@ -3,11 +3,13 @@ package uts.wsd.teamtwo.JAXB;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import javax.xml.datatype.DatatypeConstants;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
@@ -57,8 +59,8 @@ public class Review implements Serializable
 	 * The date on which the review was published.
 	 */
 	@XmlAttribute(name = "date", required = true)
-    @XmlSchemaType(name = "date")
-	private XMLGregorianCalendar date;
+	@XmlJavaTypeAdapter(DateAdapter.class)
+	private Date date;
 	
 	/**
 	 * The content of the review (message content)
@@ -81,9 +83,7 @@ public class Review implements Serializable
 		this.title = title;
 		this.rating = rating;
 		this.message = message;
-		
-		// Parse date
-		this.date = parseStringDate(date);
+		this.date = date;
 	}
 	
 	/**
@@ -91,6 +91,7 @@ public class Review implements Serializable
 	 * @param stdDate The Date type date.
 	 * @return The date as an XMLGregorianCalendar.
 	 */
+	/*
 	private XMLGregorianCalendar parseStringDate(Date stdDate)
 	{
 		try
@@ -98,8 +99,15 @@ public class Review implements Serializable
 			GregorianCalendar calendar = new GregorianCalendar();
 			calendar.setTime(stdDate);
 			
-			DatatypeFactory dtFactory = DatatypeFactory.newInstance();
-			return dtFactory.newXMLGregorianCalendar(calendar);
+			XMLGregorianCalendar xmlDate =
+					DatatypeFactory.newInstance()
+					.newXMLGregorianCalendarDate(
+							calendar.get(Calendar.YEAR),
+							calendar.get(Calendar.MONTH)+1,
+							calendar.get(Calendar.DAY_OF_MONTH),
+							DatatypeConstants.FIELD_UNDEFINED);
+			
+			return xmlDate;
 		}
 		catch (Exception e)
 		{
@@ -107,6 +115,7 @@ public class Review implements Serializable
 			return null;
 		}
 	}
+	*/
 
 	/**
 	 * @return the id
@@ -134,6 +143,13 @@ public class Review implements Serializable
 	 */
 	public Integer getAuthorId() {
 		return authorId;
+	}
+	
+	/**
+	 * @param the author's ID
+	 */
+	public void setAuthorId(Integer authorId) {
+		this.authorId = authorId;
 	}
 
 	/**
@@ -167,14 +183,14 @@ public class Review implements Serializable
 	/**
 	 * @return the date
 	 */
-	public XMLGregorianCalendar getDate() {
+	public Date getDate() {
 		return date;
 	}
 
 	/**
 	 * @param date the date to set
 	 */
-	public void setDate(XMLGregorianCalendar date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 
