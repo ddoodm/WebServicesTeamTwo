@@ -1,9 +1,15 @@
 package uts.wsd.teamtwo.JAXB;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.xml.bind.annotation.*;
+
+import com.sun.net.httpserver.Filter;
+import com.sun.net.httpserver.HttpExchange;
+import com.sun.net.httpserver.Filter.Chain;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -65,6 +71,15 @@ public class Reviews implements Serializable
 		return null;
 	}
 	
+	private Reviews filterByFunc(FilterFunction filterFunc)
+	{
+		ArrayList<Review> filteredList = new ArrayList<Review>();
+		for(Review review : list)
+			if(filterFunc.filter(review))
+				filteredList.add(review);
+		return new Reviews(filteredList);
+	}
+	
 	public Reviews filterById(int id)
 	{
 		ArrayList<Review> filteredList = new ArrayList<Review>();
@@ -74,10 +89,59 @@ public class Reviews implements Serializable
 	
 	public Reviews filterByHotel(Hotel hotel)
 	{
-		ArrayList<Review> filteredList = new ArrayList<Review>();
-		for(Review review : list)
-			if(review.getHotelId() == hotel.getId())
-				filteredList.add(review);
-		return new Reviews(filteredList);
+		return filterByHotel(hotel.getId());
+	}
+	
+	public Reviews filterByHotel(final long hotelId)
+	{
+		return filterByFunc(new FilterFunction()
+		{
+			@Override
+			public Boolean filter(Review review)
+			{
+				return review.getHotelId() == hotelId;
+			}
+		});
+	}
+	
+	public Reviews filterByStartDate(final Date startBound)
+	{
+		return filterByFunc(new FilterFunction()
+		{
+			@Override
+			public Boolean filter(Review review)
+			{
+				return review.getDate().after(startBound);
+			}
+		});
+	}
+	
+	public Reviews filterByEndDate(final Date endBound)
+	{
+		return filterByFunc(new FilterFunction()
+		{
+			@Override
+			public Boolean filter(Review review)
+			{
+				return review.getDate().before(endBound);
+			}
+		});
+	}
+	
+	public Reviews filterByRating(final int rating)
+	{
+		return filterByFunc(new FilterFunction()
+		{
+			@Override
+			public Boolean filter(Review review)
+			{
+				return review.getRating() == rating;
+			}
+		});
+	}
+	
+	private interface FilterFunction
+	{
+		public Boolean filter(Review review);
 	}
 }

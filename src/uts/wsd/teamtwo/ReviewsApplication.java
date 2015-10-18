@@ -48,6 +48,11 @@ public class ReviewsApplication extends GenericApplication<Reviews> {
 		return resource.filterByHotel(hotel);
 	}
 	
+	public Reviews getReviewsForHotel(int hotelId)
+	{
+		return resource.filterByHotel(hotelId);
+	}
+	
 	public Review getReview(int id)
 	{
 		return resource.getReview(id);

@@ -42,34 +42,50 @@ public class Hotels implements Serializable {
 		return new Hotels(filteredList);
 	}
 	
-	public Hotels filterByName(String name)
+	public Hotels filterByFunc(FilterFunction filterFunc)
 	{
 		ArrayList<Hotel> filteredList = new ArrayList<Hotel>();
 		for(Hotel hotel : list)
-			if(hotel.getName().toLowerCase().contains(name.toLowerCase()))
+			if(filterFunc.filter(hotel))
 				filteredList.add(hotel);
 		
 		return new Hotels(filteredList);
 	}
 	
-	public Hotels filterByCountry(String country)
+	public Hotels filterByName(final String name)
 	{
-		ArrayList<Hotel> filteredList = new ArrayList<Hotel>();
-		for(Hotel hotel : list)
-			if(hotel.getCountry().toLowerCase().equals(country.toLowerCase()))
-				filteredList.add(hotel);
-		
-		return new Hotels(filteredList);
+		return filterByFunc(new FilterFunction()
+		{
+			@Override
+			public Boolean filter(Hotel hotel)
+			{
+				return hotel.getName().toLowerCase().contains(name.toLowerCase());
+			}
+		});
 	}
 	
-	public Hotels filterByCity(String city)
+	public Hotels filterByCountry(final String country)
 	{
-		ArrayList<Hotel> filteredList = new ArrayList<Hotel>();
-		for(Hotel hotel : list)
-			if(hotel.getCity().toLowerCase().equals(city.toLowerCase()))
-				filteredList.add(hotel);
-		
-		return new Hotels(filteredList);
+		return filterByFunc(new FilterFunction()
+		{
+			@Override
+			public Boolean filter(Hotel hotel)
+			{
+				return hotel.getCountry().toLowerCase().equals(country.toLowerCase());
+			}
+		});
+	}
+	
+	public Hotels filterByCity(final String city)
+	{
+		return filterByFunc(new FilterFunction()
+		{
+			@Override
+			public Boolean filter(Hotel hotel)
+			{
+				return hotel.getCity().toLowerCase().equals(city.toLowerCase());
+			}
+		});
 	}
 	
 	public Hotel getHotel(int hotelId)
@@ -84,4 +100,9 @@ public class Hotels implements Serializable {
     {
         return this.list;
     }
+    
+	private interface FilterFunction
+	{
+		public Boolean filter(Hotel hotel);
+	}
 }
