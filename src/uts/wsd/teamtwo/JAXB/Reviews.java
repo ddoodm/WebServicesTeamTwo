@@ -111,7 +111,9 @@ public class Reviews implements Serializable
 			@Override
 			public Boolean filter(Review review)
 			{
-				return review.getDate().after(startBound);
+				// Inclusive date comparison
+				return
+					review.getDate().compareTo(startBound) >= 0;
 			}
 		});
 	}
@@ -123,7 +125,9 @@ public class Reviews implements Serializable
 			@Override
 			public Boolean filter(Review review)
 			{
-				return review.getDate().before(endBound);
+				// Inclusive date comparison
+				return
+					review.getDate().compareTo(endBound) <= 0;
 			}
 		});
 	}
