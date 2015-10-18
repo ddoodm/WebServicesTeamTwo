@@ -194,3 +194,8 @@ h2
 {
 	color: red;
 }
+
+#searchSpan
+{
+	text-align: right;
+}

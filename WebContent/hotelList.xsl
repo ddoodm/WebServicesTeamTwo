@@ -6,6 +6,15 @@
 
 	<xsl:template match="d:hotels">
 		<h1>HOTEL LISTING</h1>
+		
+		<span id="searchSpan">
+			<form method="GET" action="index.jsp">
+				Hotel Search 
+				<input type="text" name="search" />
+				<input type="submit" value="Search" />
+			</form>
+		</span>
+		
 		<div id="hotelListing">
 			<xsl:apply-templates />
 		</div>

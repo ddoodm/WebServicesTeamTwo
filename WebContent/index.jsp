@@ -15,6 +15,18 @@
     <jsp:setProperty name="hotelApp" property="filePath" value="<%=realHotelDbPath%>"/>
 </jsp:useBean>
 
+<%
+	// Obtain hotel filter string from parameters
+	String hotelSearch = request.getParameter("search");
+
+	// The list of hotels to display
+	Hotels hotels = hotelApp.getHotels();
+	
+	// If a search string is supplied, filter the result
+	if(hotelSearch != null && !hotelSearch.isEmpty())
+		hotels = hotels.filterByName(hotelSearch);
+%>
+
 <%@include file="include_header.jsp" %>
 
 	<div id="wrapper">
@@ -36,9 +48,9 @@
 		<br />
 
 		<c:set var="xmltext">
-			<%= 
+			<%=
 				// Marshal the hotel list into XML
-				hotelApp.produceXML()
+				hotelApp.produceXMLFor(hotels)
 			%>
 		</c:set>
 
