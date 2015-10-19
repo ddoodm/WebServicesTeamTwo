@@ -45,6 +45,11 @@
 			
 		<p>If you happen to be one of our fine authors, please make yourself
 		known to our friendly JSP server by <b>logging in at the bottom of the page</b>.</p>
+		
+		<p><b style="color:red;">Important note to markers:</b> The package name
+		of all server-side Java classes is uts.wsd.<b>teamtwo</b>.*. Please
+		ignore 'teamtwo' - <b>we are Team 33</b>. The package name and namespaces
+		were define before the team realised that we were not correctly formed on SPARK.</p>
 
 		<br />
 

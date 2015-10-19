@@ -21,6 +21,8 @@ import uts.wsd.teamtwo.JAXB.*;
  * The DAO which exposes functionality for manipulating and accessing the Authors database
  * @author Deinyon L Davies
  * @author Abraham Silva
+ * @see Authors
+ * @see Author
  */
 public class AuthorApplicaion extends GenericApplication<Authors>
 {

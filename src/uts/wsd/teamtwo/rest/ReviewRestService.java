@@ -20,12 +20,25 @@ import org.xml.sax.SAXException;
 import uts.wsd.teamtwo.ReviewsApplication;
 import uts.wsd.teamtwo.JAXB.Reviews;
 
+/**
+ * The REST service which provides access to the collection of Reviews
+ * stored by the server. Responses are provided in XML format.
+ * 
+ * @author Deinyon L Davies
+ */
 @Path("")
 public class ReviewRestService
 {
+	/**
+	 * A servlet application context for attribute persistence
+	 */
 	@Context
 	ServletContext application;
 	
+    /**
+     * Obtains the review Data Access Object while disallowing other threads to access the database
+     * @return the review Data Access Object
+     */
 	private ReviewsApplication getReviewApp() throws JAXBException, IOException, SAXException
 	{
 		/* 
@@ -50,6 +63,10 @@ public class ReviewRestService
 		}
 	}
 	
+	/**
+	 * An exception-safe function for retrieving the collection of data (DTO)
+	 * @return The DTO obtained through the DAO
+	 */
 	private Reviews getReviews()
 	{
 		try
@@ -116,6 +133,14 @@ public class ReviewRestService
 		return filteredReviews;
 	}
 	
+	/**
+	 * Used to parse a valid date-string to a Java Date.
+	 * Date strings should be formatted as JAXB dates:
+	 * <i>yyyy-MM-dd</i>
+	 * @param strDate The date as a valid (formatted) string
+	 * @return The string date as a Java date
+	 * @throws ParseException If the string was not a valid JAXB date
+	 */
 	private Date parseDate(String strDate) throws ParseException
 	{
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");

@@ -14,12 +14,25 @@ import javax.xml.bind.JAXBException;
 
 import org.xml.sax.SAXException;
 
+/**
+ * The REST service which provides access to the collection of Hotels
+ * stored by the server. Responses are provided in XML format.
+ * 
+ * @author Deinyon L Davies
+ */
 @Path("")
 public class HotelRestService
 {
+	/**
+	 * A servlet application context for attribute persistence
+	 */
 	@Context
 	ServletContext application;
 	
+    /**
+     * Obtains the review Data Access Object while disallowing other threads to access the database
+     * @return the review Data Access Object
+     */
 	private HotelApplication getHotelApp() throws JAXBException, IOException, SAXException
 	{
 		/* 
@@ -45,6 +58,10 @@ public class HotelRestService
 		}
 	}
 	
+	/**
+	 * An exception-safe function for retrieving the collection of data (DTO)
+	 * @return The DTO obtained through the DAO
+	 */
 	private Hotels getHotels()
 	{
 		try

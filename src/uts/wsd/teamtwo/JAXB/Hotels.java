@@ -12,23 +12,46 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.*;
 
+/**
+ * The DTO that describes a collection of Hotel.
+ * Used for database storage, manipulation and XSLT display.
+ * 
+ * @author Deinyon L Davies
+ * @see Hotel
+ */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "list"
 })
 @XmlRootElement(name = "hotels")
-public class Hotels implements Serializable {
-
+public class Hotels implements Serializable
+{
+	/**
+	 * The collection of Hotel as an ArrayList
+	 */
 	@XmlElement(name="hotel")
     private ArrayList<Hotel> list = new ArrayList<Hotel>();
 	
+	/**
+	 * Empty constructor for JAXB binding
+	 */
 	public Hotels () { }
 	
+	/**
+	 * Create a Hotel collection from an ArrayList of Hotel
+	 * @param list A list of Hotel
+	 */
 	public Hotels (ArrayList<Hotel> list)
 	{
 		this.list = list;
 	}
 	
+	/**
+	 * Filters the list to a collection of <b>one</b> Hotel with the given ID.
+	 * Used for XSLT transformation where a single Hotel is required
+	 * @param hotelId The ID number of the Hotel to display
+	 * @return A collection of one Hotel with the given ID number
+	 */
 	public Hotels filterById(int hotelId)
 	{
 		ArrayList<Hotel> filteredList = new ArrayList<Hotel>();
@@ -42,6 +65,14 @@ public class Hotels implements Serializable {
 		return new Hotels(filteredList);
 	}
 	
+	/**
+	 * Filters the collection of Hotel given a FilterFunction.
+	 * Allows complex definition of filtering types with minimal
+	 * duplicated code.
+	 * @param filterFunc The FilterFunction that defines the filter to apply
+	 * @return The filtered collection of Hotels
+	 * @see FilterFunction
+	 */
 	public Hotels filterByFunc(FilterFunction filterFunc)
 	{
 		ArrayList<Hotel> filteredList = new ArrayList<Hotel>();
@@ -52,6 +83,13 @@ public class Hotels implements Serializable {
 		return new Hotels(filteredList);
 	}
 	
+	/**
+	 * Filters the collection by a partial search string.
+	 * The search string need only contain a portion of the Hotel name to search.
+	 * IE, "inn" will return a collection that contains "Brilliant Inn" and "Inn Side"
+	 * @param name The partial name of the hotel to search
+	 * @return A collection of Hotels that match the given search query
+	 */
 	public Hotels filterByName(final String name)
 	{
 		return filterByFunc(new FilterFunction()
@@ -64,6 +102,11 @@ public class Hotels implements Serializable {
 		});
 	}
 	
+	/**
+	 * Filters the collection of Hotel by country name
+	 * @param country The country in which the hotel should exist
+	 * @return The collection of Hotel that exists in the specified country
+	 */
 	public Hotels filterByCountry(final String country)
 	{
 		return filterByFunc(new FilterFunction()
@@ -76,6 +119,11 @@ public class Hotels implements Serializable {
 		});
 	}
 	
+	/**
+	 * Filters the collection of Hotel by city name
+	 * @param city The city in which the hotel should exist
+	 * @return The collection of Hotel that exists in the specified city
+	 */
 	public Hotels filterByCity(final String city)
 	{
 		return filterByFunc(new FilterFunction()
@@ -88,6 +136,10 @@ public class Hotels implements Serializable {
 		});
 	}
 	
+	/**
+	 * @param hotelId The ID of the Hotel to obtain
+	 * @return The Hotel with the given ID number
+	 */
 	public Hotel getHotel(int hotelId)
 	{
 		for(Hotel hotel : list)
@@ -96,13 +148,28 @@ public class Hotels implements Serializable {
 		return null;
 	}
 
+	/**
+	 * Obtains the entire collection of Hotel as an ArrayList
+	 * @return The complete collection of Hotels
+	 */
     public ArrayList<Hotel> getList()
     {
         return this.list;
     }
     
+    /**
+     * An interface for writing custom hotel filtering functions.
+     * FilterFuncion.filter() is implemented to define the filtering functionality.
+     * 
+     * @author Deinyon L Davies
+     */
 	private interface FilterFunction
 	{
+		/**
+		 * Defines the result of the filter for the given 'hotel'
+		 * @param hotel The hotel to be filtered by this function
+		 * @return True if 'hotel' should be allowed, 'false' if it should be culled
+		 */
 		public Boolean filter(Hotel hotel);
 	}
 }

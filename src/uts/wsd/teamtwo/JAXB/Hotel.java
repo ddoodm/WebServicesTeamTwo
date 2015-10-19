@@ -21,6 +21,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * <p>Java class for hotelType complex type.</p>
+ * Used for binding of the XML database to a Java class,
+ * as well as for manipulation and display by the application.
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "hotelType", propOrder = {

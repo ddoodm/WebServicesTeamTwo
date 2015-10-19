@@ -1,3 +1,4 @@
+// Defines the XML namespace 'd'
 @XmlSchema(
 	    namespace = "http://www.uts.edu.au/31284/team2/wsd",
 	    elementFormDefault = XmlNsForm.QUALIFIED,

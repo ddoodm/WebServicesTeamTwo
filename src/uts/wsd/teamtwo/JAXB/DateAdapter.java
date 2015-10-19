@@ -10,7 +10,6 @@ import javax.xml.bind.annotation.adapters.XmlAdapter;
  * http://stackoverflow.com/questions/13568543/how-do-you-specify-the-date-format-used-when-jaxb-marshals-xsddatetime
  * @author Blaise Doughan
  */
-
 public class DateAdapter extends XmlAdapter<String, Date>
 {
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
