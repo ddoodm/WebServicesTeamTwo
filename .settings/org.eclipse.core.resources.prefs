@@ -1,5 +1,16 @@
 eclipse.preferences.version=1
+encoding//WebContent/review.jsp=UTF-8
 encoding//src/au/edu/uts/www/_31284/team2/wsd/ReviewType.java=UTF-8
+encoding//src/com/microsofttranslator/api/V2/LanguageService.java=UTF-8
+encoding//src/org/datacontract/schemas/_2004/_07/Microsoft_MT_Web_Service_V2/GetTranslationsResponse.java=UTF-8
+encoding//src/org/datacontract/schemas/_2004/_07/Microsoft_MT_Web_Service_V2/TranslateArray2Response.java=UTF-8
+encoding//src/org/datacontract/schemas/_2004/_07/Microsoft_MT_Web_Service_V2/TranslateArrayResponse.java=UTF-8
+encoding//src/org/datacontract/schemas/_2004/_07/Microsoft_MT_Web_Service_V2/TranslateOptions.java=UTF-8
+encoding//src/org/datacontract/schemas/_2004/_07/Microsoft_MT_Web_Service_V2/Translation.java=UTF-8
+encoding//src/org/datacontract/schemas/_2004/_07/Microsoft_MT_Web_Service_V2/TranslationMatch.java=UTF-8
+encoding//src/org/tempuri/BasicHttpBinding_LanguageServiceStub.java=UTF-8
+encoding//src/org/tempuri/SoapService.java=UTF-8
+encoding//src/org/tempuri/SoapServiceLocator.java=UTF-8
 encoding//src/uts/wsd/teamtwo/soap/client/ReviewSOAP.java=UTF-8
 encoding//src/uts/wsd/teamtwo/soap/client/ReviewSOAPPortBindingStub.java=UTF-8
 encoding//src/uts/wsd/teamtwo/soap/client/ReviewSOAPResult.java=UTF-8

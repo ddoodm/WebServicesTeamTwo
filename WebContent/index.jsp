@@ -1,5 +1,6 @@
 <%@page import="uts.wsd.teamtwo.*"%>
 <%@page import="uts.wsd.teamtwo.JAXB.*"%>
+<%@page import="uts.wsd.teamtwo.translator.TranslatorClient"%>
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml" %>

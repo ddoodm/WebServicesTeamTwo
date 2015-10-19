@@ -87,6 +87,20 @@ public class Review implements Serializable
 	}
 	
 	/**
+	 * Deep copy constructor
+	 * @param other The Review to copy
+	 */
+	public Review (Review other)
+	{
+		this.hotelId = other.hotelId;
+		this.authorId = other.authorId;
+		this.title = other.title;
+		this.rating = other.rating;
+		this.message = other.message;
+		this.date = other.date;
+	}
+	
+	/**
 	 * Parse Date date to an XMLGregorianCalendar date.
 	 * @param stdDate The Date type date.
 	 * @return The date as an XMLGregorianCalendar.
