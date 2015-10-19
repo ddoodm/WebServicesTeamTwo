@@ -6,8 +6,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml" %>
 
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
     
 <%
 	String
@@ -33,8 +33,19 @@
 	if(review == null)
 		%><c:redirect url="/404.jsp"/><%
 	
+	// Find the associated hotel and author
 	Hotel hotel = hotelApp.getHotel(review.getHotelId());
 	Author reviewAuthor = authorApp.getAuthor(review.getAuthorId());
+	
+	// Get requested language translation
+	String languageRequest = request.getParameter("language");
+	
+	// Prepare a single-entry Reviews list to transform via XSLT
+	Reviews reviewCollection = reviewApp.filterById(reviewId);
+	
+	// Make the request to the translator SOAP client only if required
+	if(languageRequest != null && !languageRequest.isEmpty() && !languageRequest.equals("en"))
+		reviewCollection = reviewCollection.translateTo(languageRequest);
 %>
 
 <%@include file="include_header.jsp" %>
@@ -54,10 +65,25 @@
 		</div>
 
 		<c:set var="reviewXml">
-			<%= reviewApp.produceXMLFor(reviewApp.filterById(reviewId)) %>
+			<%= reviewApp.produceXMLFor(reviewCollection) %>
 		</c:set>
 		<c:import url="review.xsl" var="reviewXslt" />
 		<x:transform xml="${reviewXml}" xslt="${reviewXslt}" />
+		
+		<!-- Translation form -->
+		<div>
+			<form method="get" action="review.jsp">
+				<select name="language">
+					<option value="en">English</option>
+					<option value="de">Deutsche</option>
+					<option value="ja">日本語</option>
+					<option value="es">Español</option>
+					<option value="it">Italiana</option>
+				</select>
+				<input type="submit" value="Translate" />
+				<input type="hidden" name="id" value="<%= review.getId() %>" />
+			</form>
+		</div>
 		
 		<!-- Provide functionality to Authors to delete their own reviews -->
 		<% if(author != null && reviewAuthor.getId() == author.getId()) { %>

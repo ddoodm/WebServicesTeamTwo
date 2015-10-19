@@ -2,14 +2,18 @@ package uts.wsd.teamtwo.JAXB;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 
 import javax.xml.bind.annotation.*;
+import javax.xml.rpc.ServiceException;
 
 import com.sun.net.httpserver.Filter;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.Filter.Chain;
+
+import uts.wsd.teamtwo.translator.TranslatorClient;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -69,6 +73,23 @@ public class Reviews implements Serializable
 			if(r.getId() == id)
 				return r;
 		return null;
+	}
+	
+	public Reviews translateTo(String language)
+	{
+		ArrayList<Review> translatedReviews = new ArrayList<Review>();
+		for(Review review : list)
+		{
+			Review tempReview = new Review(review);
+			try {
+				tempReview.setMessage(TranslatorClient.translate(review.getMessage(), language));
+			} catch (RemoteException | ServiceException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			translatedReviews.add(tempReview);
+		}
+		return new Reviews(translatedReviews);
 	}
 	
 	private Reviews filterByFunc(FilterFunction filterFunc)
