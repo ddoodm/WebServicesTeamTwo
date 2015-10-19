@@ -25,7 +25,10 @@ import uts.wsd.teamtwo.JAXB.Hotel;
 import uts.wsd.teamtwo.JAXB.Review;
 
 /**
- * Servlet implementation class PostReview
+ * The servlet that is responsible for posting and deleting reviews
+ * in response to requests from the web server.
+ * 
+ * @author Deinyon L Davies
  */
 @WebServlet("/reviewServlet")
 public class ReviewServlet extends HttpServlet
@@ -35,12 +38,13 @@ public class ReviewServlet extends HttpServlet
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReviewServlet() {
+    public ReviewServlet()
+    {
         super();
     }
     
     /**
-     * Obtains the review Data Access Object
+     * Obtains the review Data Access Object while disallowing other threads to access the database
      * @return the review Data Access Object
      */
 	private ReviewsApplication getReviewsApp(ServletContext application) throws JAXBException, IOException, SAXException
@@ -51,8 +55,10 @@ public class ReviewServlet extends HttpServlet
 		 */
 		synchronized (application)
 		{
+			// Attempt to locate an existing instance of the ReviewApp
 			ReviewsApplication reviewApp = (ReviewsApplication) application.getAttribute("reviewApp");
 			
+			// If one has not already been created, create one
 			if (reviewApp == null)
 			{
 				reviewApp = new ReviewsApplication();
@@ -81,6 +87,7 @@ public class ReviewServlet extends HttpServlet
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
+		// Get the operation request from the request parameter (post or delete)
 		String operation = request.getParameter("operation");
 		
 		switch(operation)
@@ -90,6 +97,9 @@ public class ReviewServlet extends HttpServlet
 		}
 	}
 	
+	/**
+	 * Create and post a review from a given HTTP request
+	 */
 	private void postReview(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
 	{
 		// Double-check that the author is logged in
@@ -135,6 +145,9 @@ public class ReviewServlet extends HttpServlet
 		redirectToHotelPage(hotelId, request, response);
 	}
 	
+	/**
+	 * Delete a review from a given HTTP request
+	 */
 	private void deleteReview(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
 	{
 		ReviewsApplication reviewApp;
@@ -167,6 +180,16 @@ public class ReviewServlet extends HttpServlet
 		redirectToHotelPage(hotelId, request, response);
 	}
 	
+	/**
+	 * Validate the data supplied via the HTTP request to
+	 * determine whether the data is well formed and complies
+	 * with the database schema (is valid).
+	 * @param title The title supplied by the user
+	 * @param ratingString The rating supplied by the user
+	 * @param message The message supplied by the user
+	 * @return Returns the result code. The result will identify any field that is not valid.
+	 * @see ComposeReviewErrorFields
+	 */
 	private ComposeReviewErrorFields verifyPostReviewData(String title, String ratingString, String message)
 	{
 		ComposeReviewErrorFields error;
@@ -186,6 +209,11 @@ public class ReviewServlet extends HttpServlet
 		return ComposeReviewErrorFields.NONE;
 	}
 	
+	/**
+	 * Verifies that the title parameter is valid
+	 * @param title The title supplied by the user
+	 * @return The result for this parameter
+	 */
 	private ComposeReviewErrorFields validateTitleParam (String title)
 	{
 		// Check for empty parameters
@@ -201,6 +229,11 @@ public class ReviewServlet extends HttpServlet
 		return ComposeReviewErrorFields.NONE;
 	}
 	
+	/**
+	 * Verifies that the rating parameter is valid
+	 * @param rating The rating supplied by the user
+	 * @return The result for this parameter
+	 */
 	private ComposeReviewErrorFields validateRatingParam (String rating)
 	{
 		// Check for empty parameters
@@ -217,6 +250,11 @@ public class ReviewServlet extends HttpServlet
 		return ComposeReviewErrorFields.NONE;
 	}
 	
+	/**
+	 * Verifies that the message parameter is valid
+	 * @param message The message supplied by the user
+	 * @return The result for this parameter
+	 */
 	private ComposeReviewErrorFields validateMessageParam (String message)
 	{
 		// Check for empty message
@@ -232,19 +270,30 @@ public class ReviewServlet extends HttpServlet
 	 */
 	private void redirectToHotelPage(int hotelId, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
+		// Set GET parameter
 		String redirectUrl = "hotel.jsp?id=" + hotelId;
 		RequestDispatcher dispatcher = request.getRequestDispatcher(redirectUrl);
 
+		// Forward the incoming request back to the hotel page
 		dispatcher.forward(request, response);
 	}
 	
+	/**
+	 * Redirects the client to the review composition page,
+	 * and supplies the set of errors that occurred.
+	 * @param hotelId The ID of the hotel that this review was composed for
+	 * @param errorFields The error that was encountered when attempting to validate the review
+	 */
 	private void returnToPageWithError(int hotelId, ComposeReviewErrorFields errorFields, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
+		// Set GET parameter
 		String redirectUrl = "hotel.jsp?id=" + hotelId;
 		RequestDispatcher dispatcher = request.getRequestDispatcher(redirectUrl);
 		
+		// Append the error to the request
 		request.setAttribute("composeReviewError", errorFields);
 
+		// Forward the incoming request back to the hotel page
 		dispatcher.forward(request, response);
 	}
 }

@@ -12,20 +12,45 @@ import javax.xml.bind.Unmarshaller;
 
 import org.xml.sax.SAXException;
 
+/**
+ * Provides standard functionality that is extended by
+ * DAO implementations. Provides access and manipulation
+ * functionality to the underlying XML database.
+ * 
+ * @author Deinyon L Davies
+ *
+ * @param <DTO> The collection type (data) that this DAO operates on.
+ */
 public abstract class GenericApplication <DTO>
 {
+	/**
+	 * The absolute (filesystem) path to the database
+	 */
 	private String documentPath;
+	
+	/**
+	 * Working context for JAXB operations
+	 */
 	private JAXBContext jc;
+	
+	/**
+	 * The underlying datatype
+	 */
 	protected DTO resource;
 	
+	/**
+	 * The class of the type DTO. Used for JAXB initialization
+	 */
 	protected Class<DTO> jaxbClass;
 
 	public GenericApplication()
-	{
-		// TODO Auto-generated constructor stub
-	}
+	{ }
 	
-	public String getFilePath() {
+	/**
+	 * @return The absolute (filesystem) path to the database XML file
+	 */
+	public String getFilePath()
+	{
 		return documentPath;
 	}
 
@@ -33,7 +58,8 @@ public abstract class GenericApplication <DTO>
 	 * Marshal the current database to formatted XML, and save (update) the
 	 * database file.
 	 */
-	public void updateDatabase() throws Exception {
+	public void updateDatabase() throws Exception
+	{
 		// Obtain the database as a formatted XML document
 		String xml = this.produceXML();
 
@@ -43,7 +69,14 @@ public abstract class GenericApplication <DTO>
 		fout.close();
 	}
 	
-	public void setFilePath(String documentPath) {
+	/**
+	 * The method must be called before the database can be manipulated.
+	 * Initializes the JAXB context and populates the data object
+	 * with data from the database.
+	 * @param documentPath The absolute path to the database
+	 */
+	public void setFilePath(String documentPath)
+	{
 		this.documentPath = documentPath;
 		
 		try
