@@ -21,7 +21,9 @@
 	String email = request.getParameter("Email");
 	String password = request.getParameter("Password");
 %>
-
+<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700'
+	rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="style/login.css">
 <%@include file="include_header.jsp"%>
 
 <div id="wrapper">
@@ -30,30 +32,22 @@
 		<a href="index.jsp">Home</a> &gt; Login
 	</p>
 
-	<h1>Log In</h1>
+	<h1></h1>
 
 	<%
 		// If the user has not attempted to log in yet, show the form:
 		if (email == null) {
 	%>
 
-	<FORM NAME="form1" METHOD="POST" Action="login.jsp">
-		<table>
-			<tbody>
-				<tr>
-					<td><label for="Email">E-Mail</label></td>
-					<td><input value="" name="Email" type="text"></td>
-				</tr>
-				<tr>
-					<td><label for="Password">Password</label></td>
-					<td><input value="" name="Password" type="password"></td>
-				</tr>
-				<tr>
-					<td><label for=""></label></td>
-					<td><input value="Login" name="" type="submit"></td>
-				</tr>
-			</tbody>
-		</table>
+	<FORM NAME="form1" METHOD="POST" Action="login.jsp" onsubmit="return CheckLogin();">
+		<div class="logo"></div>
+		<div class="login-block">
+			<h1>Login</h1>
+			<input type="text" value="" placeholder="Email" id="Email"
+				name="Email" /> <input type="password" value=""
+				placeholder="Password" id="Password" name="Password" />
+			<button value="Login" name="" type="submit">Submit</button>
+		</div>
 	</form>
 
 	<%
@@ -81,3 +75,15 @@
 </div>
 
 <%@include file="include_footer.jsp"%>
+<script type="text/javascript">
+
+	function CheckLogin() {
+		var email = document.getElementById('Email');
+		var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+		if (!filter.test(email.value)) {
+			alert('Please provide a valid email address');
+			email.focus;
+			return false;
+		}
+	}
+</script>
