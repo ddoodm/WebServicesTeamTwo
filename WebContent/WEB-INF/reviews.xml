@@ -1,18 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<d:reviews
-	xmlns:d="http://www.uts.edu.au/31284/team2/wsd"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.uts.edu.au/31284/team2/wsd reviews.xsd ">
-	
-	<d:review id="1" hotel="1" author="1" title="A Test Review" rating="10" date="2014-08-02">
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<d:reviews xmlns:d="http://www.uts.edu.au/31284/team2/wsd">
+    <d:review id="1" hotel="1" author="1" title="A Test Review" rating="10" date="2014-08-02">
 		This is a test review. Please discard this test review. Review details go here.
 	</d:review>
-	<d:review id="2" hotel="2" author="2" title="A Test Review Two" rating="4" date="2015-02-10">
+    <d:review id="2" hotel="2" author="2" title="A Test Review Two" rating="4" date="2015-02-10">
 		Another test review. Discard this message.
 	</d:review>
-	<d:review id="3" hotel="2" author="3" title="This Be A Review" rating="2" date="2015-02-14">
-		Yet another test review.
-	</d:review>
-	
+    <d:review id="3" hotel="2" author="3" title="A Worthwhile Inn" rating="5" date="2015-10-20">
+    	I took a vacation to NYC a few months ago and stayed at the Brilliant Inn. It certainly is not too spectacular, but it should do the trick for low-budget visitors.
+    </d:review>
+    <d:review id="4" hotel="3" author="3" title="Fantastic For Business Misadventures" rating="8" date="2015-10-20">
+    	This is an incredible capsule hotel right in the middle of Tokyo. It is ideal for hard working businessmen who have found themselves far from home late at night.
+    </d:review>
 </d:reviews>
