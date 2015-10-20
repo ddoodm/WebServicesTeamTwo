@@ -10,13 +10,24 @@ import org.apache.axis.types.UnsignedInt;
 
 import au.edu.uts.www._31284.team2.wsd.ReviewType;
 
+/**
+ * The standalone application that communicates with the
+ * Reviews SOAP server. The class provides a program entry point (main());
+ * it should be executed alone.
+ * @see ReviewSOAP
+ * @author Deinyon L Davies
+ */
 public class ReviewClient
 {
 	/**
-	 * The Review SOAP service interface
+	 * The Review SOAP service interface (client)
 	 */
 	private ReviewSOAP reviewServ;
 	
+	/**
+	 * The program entry point
+	 * @param args Not used
+	 */
 	public static void main (String[] args)
 	{
 		try
@@ -30,6 +41,9 @@ public class ReviewClient
 		}
 	}
 	
+	/**
+	 * Begins the command-line interface for the Review Client
+	 */
 	public ReviewClient() throws ServiceException, RemoteException
 	{
 		// Initialize SOAP client interface
@@ -38,6 +52,7 @@ public class ReviewClient
 		
 		System.out.println("==== Hotel Service 33 Review SOAP Client ====");
 		
+		// Get an operation from the user
 		Scanner sc = new Scanner(System.in);
 		int option = 0;
 		do
@@ -55,7 +70,7 @@ public class ReviewClient
 			
 			switch(option)
 			{
-			case 1:	listReviews(sc); break;
+			case 1:	listReviews(); break;
 			case 2: postReview(); break;
 			case 3: deleteReview(sc); break;
 			}
@@ -65,6 +80,10 @@ public class ReviewClient
 		return;
 	}
 
+	/**
+	 * Provides the command-line interface for making a deletion request to the SOAP server
+	 * @param sc The standard input stream scanner
+	 */
 	private void deleteReview(Scanner sc) throws RemoteException
 	{
 		System.out.println("...");
@@ -114,6 +133,9 @@ public class ReviewClient
 			System.out.println("An unknown error occurred. Sorry.\nReview was not deleted.");
 	}
 
+	/**
+	 * Provides the command-line interface for making a review composition request to the SOAP server
+	 */
 	private void postReview() throws RemoteException
 	{
 		String hotelId = scanString("Please enter a HOTEL ID");
@@ -140,7 +162,10 @@ public class ReviewClient
 			System.out.println("\nAn unknown error occurred. Sorry.\nReview was not posted.");
 	}
 
-	private void listReviews(Scanner sc) throws RemoteException
+	/**
+	 * Provides the command-line interface for making a review listing request to the SOAP server
+	 */
+	private void listReviews() throws RemoteException
 	{
 		ReviewType[] reviewsList = reviewServ.fetchReviews();
 
@@ -148,6 +173,11 @@ public class ReviewClient
 			System.out.print(reviewToString(review));
 	}
 	
+	/**
+	 * Converts a ReviewType (SOAP client) Review to a formatted string
+	 * @see ReviewType
+	 * @see Review
+	 */
 	private String reviewToString (ReviewType review)
 	{
 		// Define the review display format
@@ -175,6 +205,10 @@ public class ReviewClient
 		return reviewString;
 	}
 	
+	/**
+	 * Prompts the user to enter a username and password
+	 * @return The E-Mail in element [0], the password in element [1]
+	 */
 	private String[] promptUserAndPass()
 	{
 		String[] result = new String[2];
@@ -183,6 +217,11 @@ public class ReviewClient
 		return result;
 	}
 	
+	/**
+	 * Provides a prompt and waits for user input
+	 * @param prompt The prompt message to display
+	 * @return The user's input
+	 */
 	private String scanString(String prompt)
 	{
 		Scanner sc = new Scanner(System.in);

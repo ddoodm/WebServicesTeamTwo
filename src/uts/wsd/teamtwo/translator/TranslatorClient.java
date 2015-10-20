@@ -8,12 +8,28 @@ import org.tempuri.SoapServiceLocator;
 
 import com.microsofttranslator.api.V2.LanguageService;
 
+/**
+ * A static wrapper class which interfaces with the 
+ * Microwoft Translator SOAP client to provide a
+ * simple translation interface.
+ * 
+ * The class provides a program entry point for testing purposes.
+ * 
+ * @author Deinyon L Davies
+ */
 public class TranslatorClient
 {
-	public static final String
+	/**
+	 * The client ID and public key that are used to request an access token
+	 * from the Microsoft translation service
+	 */
+	private static final String
 		CLIENT_ID = "HotelService33",
 		CLIENT_SECRET = "OoqnSU0wqCGoJh+Dew+S1WiWK/quJ3C/HB69hf3WHKQ=";
 	
+	/**
+	 * Test program entry point
+	 */
 	public static void main (String[] args)
 	{
 		try {
@@ -27,6 +43,14 @@ public class TranslatorClient
 		}
 	}
 	
+	/**
+	 * Translate a given English string to a given language
+	 * @param inputStr The English language string to be translated
+	 * @param toLanguage The Microsoft Language Code of the language to which the input shall be translated
+	 * @return The input string translated to the given language
+	 * @throws ServiceException If the client could not connect to the SOAP service
+	 * @throws RemoteException If an invalid language code is specified
+	 */
 	public static String translate(String inputStr, String toLanguage) throws ServiceException, RemoteException
 	{
 		SoapServiceLocator locator = new SoapServiceLocator();

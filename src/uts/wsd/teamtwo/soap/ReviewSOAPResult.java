@@ -1,5 +1,10 @@
 package uts.wsd.teamtwo.soap;
 
+/**
+ * The status (result) of a manipulative Review SOAP Service request.
+ * @see ReviewSOAP
+ * @author Deinyon L Davies
+ */
 public enum ReviewSOAPResult
 {
 	SUCCESS,
