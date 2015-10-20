@@ -26,7 +26,15 @@
 </jsp:useBean>
 
 <%
-	int reviewId = Integer.parseInt(request.getParameter("id"));
+	// Obtain review reference from review ID GET parameter
+	int reviewId = 0;
+	
+	try {
+		reviewId = Integer.parseInt(request.getParameter("id"));
+	} catch (Exception e) {
+		%><c:redirect url="/404.jsp"/><%
+	}
+	
 	Review review = reviewApp.getReview(reviewId);
 	
 	// If the review is not defined, redirect to the 404 document

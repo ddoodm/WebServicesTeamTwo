@@ -23,7 +23,12 @@
 
 <%
 	// Obtain hotel reference from hotel ID GET parameter
-	int hotelId = Integer.parseInt(request.getParameter("id"));
+	int hotelId = 0;
+	try {
+		hotelId = Integer.parseInt(request.getParameter("id"));
+	} catch (Exception e) {
+		%><c:redirect url="/404.jsp"/><%
+	}
 	Hotel hotel = hotelApp.getHotel(hotelId);
 	
 	// If the hotel is not defined, redirect to the 404 document
